@@ -12,7 +12,22 @@ protocol Provider {
 // TODO: Implement networking
 extension Provider {
     func perform<T: Decodable>(_ apiRequest: APIRequest, completion: @escaping (Response<T>) -> Void) {
-        print("requesting...")
         completion(Response(request: try! apiRequest.asURLRequest(), data: nil, response: nil, error: nil))
+    }
+}
+
+import Foundation
+
+class SimpleProvider: Provider {
+    
+    func perform<T>(_ apiRequest: APIRequest, completion: @escaping (Response<T>) -> Void) where T : Decodable {
+        do {
+            let request = try apiRequest.asURLRequest()
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                completion(Response(request: request, data: data, response: response, error: error))
+            }.resume()
+        } catch {
+            fatalError()
+        }
     }
 }

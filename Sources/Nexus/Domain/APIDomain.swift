@@ -14,6 +14,13 @@ public protocol APIDomain: URLConvertible {
 
 extension APIDomain {
     
+    public var urlScheme: String {
+        return "https"
+    }
+}
+
+extension APIDomain {
+    
     public func asURL() throws -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = urlScheme

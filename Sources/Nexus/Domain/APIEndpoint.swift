@@ -31,11 +31,12 @@ extension RiotLiveEndpoint {
 //            queryParameters["api_key"] =
             var headers: [String : String]?
             
-            let request = APIRequest(baseURL: try domain.asURL(),
-                                     pathURL: method.endpointPath(from: try endpoint.asURL()),
+            let url = try domain.asURL().appendingPathComponent(method.endpointPath(from: try endpoint.asURL()).absoluteString)
+            let request = APIRequest(url: url,
                                      queryParameters: queryParameters,
                                      httpHeaders: headers,
                                      method: method)
+            print("Request created with url: \(try! request.asURL())")
             provider.perform(request, completion: completion)
         } catch {
             fatalError()

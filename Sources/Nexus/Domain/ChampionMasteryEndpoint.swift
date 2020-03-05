@@ -13,13 +13,15 @@ protocol ChampionMasteryEndpoint {
     func getScore(bySummoner encryptedSummonerID: String, completion: @escaping (Response<Int>) -> Void)
 }
 
-struct ChampionMasteryAPI: ChampionMasteryEndpoint, RiotLiveEndpoint {
-    
+struct ChampionMasteryAPI: RiotLiveEndpoint {
     typealias Method = ChampionMasteryMethod
-    
     let domain: APIDomain
     let provider: Provider
+    let endpoint: RiotAPI.Endpoint = .championMastery
+}
 
+extension ChampionMasteryAPI {
+    
     enum ChampionMasteryMethod: APIMethod {
         case masteryBySummoner(_ summonerID: String)
         case masteryBySummonerByChampion(_ summonerID: String, _ championID: Int)
@@ -44,9 +46,9 @@ struct ChampionMasteryAPI: ChampionMasteryEndpoint, RiotLiveEndpoint {
             }
         }
     }
-    
-    let endpoint: RiotAPI.Endpoint = .championMastery
-    
+}
+
+extension ChampionMasteryAPI: ChampionMasteryEndpoint {
     
     func getMasteries(bySummoner encryptedSummonerID: String, completion: @escaping (Response<[ChampionMastery]>) -> Void) {
         request(.masteryBySummoner(encryptedSummonerID), completion: completion)
@@ -60,15 +62,3 @@ struct ChampionMasteryAPI: ChampionMasteryEndpoint, RiotLiveEndpoint {
         request(.masteryScoreBySummoner(encryptedSummonerID), completion: completion)
     }
 }
-
-
-
-//extension URL {
-//    init(staticString string: StaticString) {
-//        guard let url = URL(string: "\(string)") else {
-//            preconditionFailure("Invalid static URL string: \(string)")
-//        }
-//        self = url
-//    }
-//}
-

@@ -8,17 +8,22 @@
 import Foundation
 
 struct APIRequest {
-    let baseURL: URL
-    let pathURL: URL
+    let url: URL
     let queryParameters: [String : String]?
     let httpHeaders: [String : String]?
     let method: APIMethod
+    
+    init(url: URL, queryParameters: [String : String]? = nil, httpHeaders: [String : String]? = nil, method: APIMethod) {
+        self.url = url
+        self.queryParameters = queryParameters
+        self.httpHeaders = httpHeaders
+        self.method = method
+    }
 }
 
 extension APIRequest: URLConvertible {
     func asURL() throws -> URL {
-        guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else { throw NexusError.invalidURL(url: baseURL) }
-        components.path = pathURL.absoluteString
+        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { throw NexusError.invalidURL(url: url) }
         components.queryItems = queryParameters?.map { URLQueryItem(name: $0, value: $1) }
         return try components.asURL()
     }

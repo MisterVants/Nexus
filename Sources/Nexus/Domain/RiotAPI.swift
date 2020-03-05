@@ -28,7 +28,6 @@ public struct RiotAPI: APIDomain {
         return "\(region.platform).api.riotgames.com"
     }
     
-    public let urlScheme: String = "https"
     public let hostname: String
     public let region: Region
     
