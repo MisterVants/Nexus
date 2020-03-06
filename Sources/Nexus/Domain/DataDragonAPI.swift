@@ -25,9 +25,33 @@ public struct DataDragonAPI: APIDomain {
         get(.versions, type: .none, completion: completion)
     }
     
-    public func getChampions(version: String, locale: String, completion: @escaping (Response<ChampionDto>) -> Void) {
+    public func getChampions(version: String, locale: String, completion: @escaping (Response<DataAsset<Champion>>) -> Void) {
         get(.champions, type: .versionedData(version, locale), completion: completion)
     }
+    
+    public func getChampionDetails(byID championID: String, version: String, locale: String, completion: @escaping (Response<DataAsset<Champion>>) -> Void) {
+        get(.championDetail(championID), type: .versionedData(version, locale), completion: completion)
+    }
+    
+//    public func getItems(version: String, locale: String, completion: @escaping (Response<ItemsDto>) -> Void) {
+//
+//    }
+    
+//    public func getSummonerSpells(version: String, locale: String, completion: @escaping (Response<SummonerSpellDto>) -> Void) {
+//
+//    }
+    
+//    public func getProfileIcons(version: String, locale: String, completion: @escaping (Response<ProfileIconDto>) -> Void) {
+//
+//    }
+    
+//    public func getMaps(version: String, locale: String, completion: @escaping (Response<MapDto>) -> Void) {
+//
+//    }
+    
+//    public func getRunesReforged(version: String, locale: String, completion: @escaping (Response<[RunesReforgedPath]>) -> Void) {
+//
+//    }
     
     public func getChampionThumbnail(byID championID: String, version: String, completion: @escaping (Response<Data>) -> Void) {
         get(.championThumbnail(championID), type: .versionedImage(version), completion: completion)
@@ -46,7 +70,6 @@ public struct DataDragonAPI: APIDomain {
         do {
             let url = resource.endpointPath(from: type.pathURL(from: try self.asURL()))
             let request = APIRequest(url: url, method: resource)
-//            print("Request created with url:\n \(try! request.asURL())")
             provider.perform(request, completion: completion)
         } catch {
             fatalError()

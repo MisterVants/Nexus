@@ -1,6 +1,6 @@
 //
-//  Champion.swift
-//  
+//  ChampionPassive.swift
+//
 //  Copyright (c) 2020 André Vants
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,44 +22,16 @@
 //  SOFTWARE.
 //
 
-public struct Champion: Codable {
-
-    /// A string that identifies the champion.
-    public let id: String
-
-    /// A number string that uniquely identifies the champion.
-    public let key: String
-
-    /// The champion's name string.
+public struct ChampionPassive: Codable {
     public let name: String
-
-    /// The champion's title string.
-    public let title: String
-
-    public let blurb: String // lore reduced
-
-    public let lore: String?
-
-    public let tags: [String] // mage, fighter, etc
-
-    public let allytips: [String]?
-
-    public let enemytips: [String]?
-    
-    public let info: ChampionInfo
-    
-    public let stats: ChampionStats
-
-    public let skins: [ChampionSkin]?
-
-    public let spells: [ChampionSpell]?
-
-    public let passive: ChampionPassive?
+    public let descriptionText: String
+    public let image: ImageMetadata
 }
 
-public struct ChampionDto: Codable {
-    public let data: [String : Champion]
-    public let version: String
-    public let type: String
-    internal let format: String
+extension ChampionPassive {
+    
+    enum CodingKeys: String, CodingKey {
+        case image, name
+        case descriptionText = "description"
+    }
 }

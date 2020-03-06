@@ -35,6 +35,8 @@ enum StaticDataResource: APIMethod {
             return baseURL.appendingPathComponents("api", "versions").json()
         case .champions:
             return baseURL.appendingPathComponent("champion").json()
+        case .championDetail(let championID):
+            return baseURL.appendingPathComponents("champion", championID).json()
         default:
             fatalError()
         }
