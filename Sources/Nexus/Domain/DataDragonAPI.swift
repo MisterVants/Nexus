@@ -49,9 +49,9 @@ public struct DataDragonAPI: APIDomain {
 //
 //    }
     
-//    public func getRunesReforged(version: String, locale: String, completion: @escaping (Response<[RunesReforgedPath]>) -> Void) {
-//
-//    }
+    public func getRunesReforged(version: String, locale: String, completion: @escaping (Response<[RunesReforged.Path]>) -> Void) {
+        get(.runesReforged, type: .versionedData(version, locale), completion: completion)
+    }
     
     public func getChampionThumbnail(byID championID: String, version: String, completion: @escaping (Response<Data>) -> Void) {
         get(.championThumbnail(championID), type: .versionedImage(version), completion: completion)
