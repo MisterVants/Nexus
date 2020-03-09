@@ -25,6 +25,10 @@ public struct DataDragonAPI: APIDomain {
         get(.versions, type: .none, completion: completion)
     }
     
+    public func getLocalizedStrings(version: String, locale: String, completion: @escaping (Response<DataAsset<String>>) -> Void) {
+        get(.localizedStrings, type: .versionedData(version, locale), completion: completion)
+    }
+    
     public func getChampions(version: String, locale: String, completion: @escaping (Response<DataAsset<Champion>>) -> Void) {
         get(.champions, type: .versionedData(version, locale), completion: completion)
     }

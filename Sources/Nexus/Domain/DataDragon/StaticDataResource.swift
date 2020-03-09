@@ -47,8 +47,8 @@ enum StaticDataResource: APIMethod {
             return baseURL.appendingPathComponent("profileicon").json()
         case .maps:
             return baseURL.appendingPathComponent("map").json()
-        default:
-            fatalError()
+        case .localizedStrings:
+            return baseURL.appendingPathComponent("language").json()
         }
     }
 }
