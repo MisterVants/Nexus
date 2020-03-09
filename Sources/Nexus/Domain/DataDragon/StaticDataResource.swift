@@ -39,6 +39,8 @@ enum StaticDataResource: APIMethod {
             return baseURL.appendingPathComponents("champion", championID).json()
         case .runesReforged:
             return baseURL.appendingPathComponent("runesReforged").json()
+        case .summonerSpells:
+            return baseURL.appendingPathComponent("summoner").json()
         default:
             fatalError()
         }

@@ -37,9 +37,9 @@ public struct DataDragonAPI: APIDomain {
 //
 //    }
     
-//    public func getSummonerSpells(version: String, locale: String, completion: @escaping (Response<SummonerSpellDto>) -> Void) {
-//
-//    }
+    public func getSummonerSpells(version: String, locale: String, completion: @escaping (Response<DataAsset<SummonerSpell>>) -> Void) {
+        get(.summonerSpells, type: .versionedData(version, locale), completion: completion)
+    }
     
 //    public func getProfileIcons(version: String, locale: String, completion: @escaping (Response<ProfileIconDto>) -> Void) {
 //

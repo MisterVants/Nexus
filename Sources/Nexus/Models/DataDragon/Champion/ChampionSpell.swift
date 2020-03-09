@@ -39,7 +39,7 @@ public struct ChampionSpell: Codable {
     // datavalues -> missing documentation
     public let effect: [[Double]?]    //This field is a List of List of Double.
     public let effectBurn: [String?]
-    public let vars: [Vars]
+    public let vars: [SpellVars]
     public let costType: String
     public let maximumAmmo: String
     public let range: [Double]//AnyObject //    range    object    //This field is either a List of Integer or the String 'self' for spells that target one's own champion.
@@ -78,44 +78,5 @@ extension ChampionSpell {
     public struct LevelTip: Codable {
         public let effect: [String]
         public let label: [String]
-    }
-}
-
-extension ChampionSpell {
-    
-    public struct Vars: Codable {
-        public let ranksWith: String?
-        public let dyn: String?
-        public let link: String
-        public let coeff: CoeffType
-        public let key: String
-    }
-}
-
-// TODO: Review this
-extension ChampionSpell {
-    
-    public enum CoeffType: Codable {
-        case number(Double)
-        case array([Double])
-        
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            
-            if let double = try? container.decode(Double.self) {
-                self = .number(double)
-            } else {
-                let array = try container.decode([Double].self)
-                self = .array(array)
-            }
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            switch self {
-            case .number(let number): try container.encode(number)
-            case .array(let array): try container.encode(array)
-            }
-        }
     }
 }
