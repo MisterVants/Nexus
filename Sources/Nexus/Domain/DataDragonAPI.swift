@@ -41,13 +41,13 @@ public struct DataDragonAPI: APIDomain {
         get(.summonerSpells, type: .versionedData(version, locale), completion: completion)
     }
     
-//    public func getProfileIcons(version: String, locale: String, completion: @escaping (Response<ProfileIconDto>) -> Void) {
-//
-//    }
+    public func getProfileIcons(version: String, locale: String, completion: @escaping (Response<DataAsset<ProfileIcon>>) -> Void) {
+        get(.profileIcon, type: .versionedData(version, locale), completion: completion)
+    }
     
-//    public func getMaps(version: String, locale: String, completion: @escaping (Response<MapDto>) -> Void) {
-//
-//    }
+    public func getMaps(version: String, locale: String, completion: @escaping (Response<DataAsset<Map>>) -> Void) {
+        get(.maps, type: .versionedData(version, locale), completion: completion)
+    }
     
     public func getRunesReforged(version: String, locale: String, completion: @escaping (Response<[RunesReforged.Path]>) -> Void) {
         get(.runesReforged, type: .versionedData(version, locale), completion: completion)
