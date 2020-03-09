@@ -33,9 +33,9 @@ public struct DataDragonAPI: APIDomain {
         get(.championDetail(championID), type: .versionedData(version, locale), completion: completion)
     }
     
-//    public func getItems(version: String, locale: String, completion: @escaping (Response<ItemsDto>) -> Void) {
-//
-//    }
+    public func getItems(version: String, locale: String, completion: @escaping (Response<DataAsset<Item>>) -> Void) {
+        get(.items, type: .versionedData(version, locale), completion: completion)
+    }
     
     public func getSummonerSpells(version: String, locale: String, completion: @escaping (Response<DataAsset<SummonerSpell>>) -> Void) {
         get(.summonerSpells, type: .versionedData(version, locale), completion: completion)

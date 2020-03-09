@@ -37,6 +37,8 @@ enum StaticDataResource: APIMethod {
             return baseURL.appendingPathComponent("champion").json()
         case .championDetail(let championID):
             return baseURL.appendingPathComponents("champion", championID).json()
+        case .items:
+            return baseURL.appendingPathComponent("item").json()
         case .runesReforged:
             return baseURL.appendingPathComponent("runesReforged").json()
         case .summonerSpells:
