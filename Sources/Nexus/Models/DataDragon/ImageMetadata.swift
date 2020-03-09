@@ -53,19 +53,24 @@ public struct ImageMetadata: Codable {
     public let group: String
     
     /// The identifier string describing the resource name of the referenced image.
-    public var filename: String { return full }
-    private let full: String
+    public let filename: String
     
     /// The identifier string describing the filename of the sprite sheet that contains the referenced image.
-    public var spriteSheet: String { return sprite }
-    private let sprite: String
+    public let spriteSheet: String
     
     /// A rectangle describing the sprite location and size in its referenced sprite sheet.
     public var frame: CGRect {
         return CGRect(x: x, y: y, width: w, height: h)
     }
+    
     private let x: Int
     private let y: Int
     private let w: Int
     private let h: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case x, y, w, h, group
+        case filename = "full"
+        case spriteSheet = "sprite"
+    }
 }
