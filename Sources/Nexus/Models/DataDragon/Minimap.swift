@@ -1,5 +1,5 @@
 //
-//  Map.swift
+//  Minimap.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,20 +22,19 @@
 //  SOFTWARE.
 //
 
-
-public struct Map: Codable {
+public struct Minimap: Codable {
     
-    /// A string describing the name of the game map.
-    public let mapName: String
-    
-    /// A string identifier for the game map.
+    /// A numeric string identifier for the game map.
     public let mapID: String
     
+    /// The name of the game map.
+    public let mapName: String
+    
     /// The map's image sprite parameters.
-    public let image: ImageMetadata
+    public let image: ImageMetadata?
 }
 
-extension Map {
+extension Minimap {
     
     enum CodingKeys: String, CodingKey {
         case mapName = "MapName"

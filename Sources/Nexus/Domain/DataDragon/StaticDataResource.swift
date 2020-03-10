@@ -22,7 +22,7 @@ enum StaticDataResource: APIMethod {
     case localizedStrings
     
     var methodSignature: String {
-        fatalError()
+        fatalError() // FIXME
     }
     
     func endpointPath(from baseURL: URL) -> URL {
