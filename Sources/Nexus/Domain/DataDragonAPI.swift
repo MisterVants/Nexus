@@ -57,8 +57,58 @@ public struct DataDragonAPI: APIDomain {
         get(.runesReforged, type: .versionedData(version, locale), completion: completion)
     }
     
+    // images
+    
+    public func getSplashArt(byID championID: String, skinIndex: Int, completion: @escaping (Response<Data>) -> Void) {
+        get(.splashArt(championID, skinIndex), type: .image, completion: completion)
+    }
+    
+    public func getLoadingScreenArt(byID championID: String, skinIndex: Int, completion: @escaping (Response<Data>) -> Void) {
+        get(.loadingScreenArt(championID, skinIndex), type: .image, completion: completion)
+    }
+    
+    public func getRuneReforgedIcon(path: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.runesReforgedIcon(path), type: .image, completion: completion)
+    }
+    
+    public func getRuneReforgedPathIcon(path: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.runesReforgedPathIcon(path), type: .image, completion: completion)
+    }
+    
     public func getChampionThumbnail(byID championID: String, version: String, completion: @escaping (Response<Data>) -> Void) {
         get(.championThumbnail(championID), type: .versionedImage(version), completion: completion)
+    }
+    
+    public func getPassiveImage(filename: String, version: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.passive(filename), type: .versionedImage(version), completion: completion)
+    }
+    
+    public func getSpellImage(filename: String, version: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.spell(filename), type: .versionedImage(version), completion: completion)
+    }
+    
+    public func getItemImage(byID itemID: String, version: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.item(itemID), type: .versionedImage(version), completion: completion)
+    }
+    
+    public func getSummonerSpellImage(byID spellID: String, version: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.summonerSpell(spellID), type: .versionedImage(version), completion: completion)
+    }
+    
+    public func getProfileIconImage(byID profileIconID: String, version: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.profileIcon(profileIconID), type: .versionedImage(version), completion: completion)
+    }
+    
+    public func getMinimapImage(mapID: String, version: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.minimap(mapID), type: .versionedImage(version), completion: completion)
+    }
+    
+    public func getSpriteSheet(filename: String, version: String, completion: @escaping (Response<Data>) -> Void) {
+        get(.spriteSheet(filename), type: .versionedImage(version), completion: completion)
+    }
+    
+    public func getScoreboardIcon(byType iconType: ScoreboardIcon, completion: @escaping (Response<Data>) -> Void) {
+        get(.scoreboardIcon(iconType), type: .versionedImage("5.5.1"), completion: completion)
     }
     
     private func get<T: Decodable>(_ resource: StaticDataResource, type: ResourceType, completion: @escaping (Response<T>) -> Void) {
@@ -99,4 +149,13 @@ enum ResourceType {
             return baseURL
         }
     }
+}
+
+public enum ScoreboardIcon: String, CaseIterable {
+    case champion
+    case gold
+    case items
+    case minion
+    case score
+    case spells
 }

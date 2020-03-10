@@ -29,24 +29,34 @@ enum StaticDataResource: APIMethod {
         switch self {
         case .realm(let region):
             return baseURL.appendingPathComponents("realms", region.rawValue).json()
+            
         case.languages:
             return baseURL.appendingPathComponents("cdn", "languages").json()
+            
         case .versions:
             return baseURL.appendingPathComponents("api", "versions").json()
+            
         case .champions:
             return baseURL.appendingPathComponent("champion").json()
+            
         case .championDetail(let championID):
             return baseURL.appendingPathComponents("champion", championID).json()
+            
         case .items:
             return baseURL.appendingPathComponent("item").json()
+            
         case .runesReforged:
             return baseURL.appendingPathComponent("runesReforged").json()
+            
         case .summonerSpells:
             return baseURL.appendingPathComponent("summoner").json()
+            
         case .profileIcon:
             return baseURL.appendingPathComponent("profileicon").json()
+            
         case .maps:
             return baseURL.appendingPathComponent("map").json()
+            
         case .localizedStrings:
             return baseURL.appendingPathComponent("language").json()
         }

@@ -25,4 +25,8 @@ extension URL {
     func png() -> URL {
         return self.pathExtension.isEmpty ? self.appendingPathExtension("png") : self
     }
+    
+    func jpg() -> URL {
+        return self.pathExtension.isEmpty ? self.appendingPathExtension("jpg") : self
+    }
 }
