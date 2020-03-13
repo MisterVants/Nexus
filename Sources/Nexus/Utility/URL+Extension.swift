@@ -14,6 +14,10 @@ extension URL {
             url.appendingPathComponent(pathComponent)
         }
     }
+    
+    func appendingPathComponent<T: RawRepresentable>(_ component: T) -> URL where T.RawValue == String {
+        appendingPathComponent(component.rawValue)
+    }
 }
 
 extension URL {

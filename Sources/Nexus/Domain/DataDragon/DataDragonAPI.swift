@@ -76,7 +76,7 @@ public struct DataDragonAPI: APIDomain {
     // Put this in protocol?
     private func request<T: Decodable>(_ resource: APIMethod, type: ResourceType, completion: @escaping (Response<T>) -> Void) {
         do {
-            let url = resource.endpointPath(from: type.pathURL(from: try self.asURL()))
+            let url = resource.endpointURL(from: type.pathURL(from: try self.asURL()))
             let request = APIRequest(url: url, method: resource)
             provider.perform(request, completion: completion)
         } catch {

@@ -44,7 +44,7 @@ extension LeagueAPI {
             }
         }
         
-        func endpointPath(from baseURL: URL) -> URL {
+        func endpointURL(from baseURL: URL) -> URL {
             switch self {
             case .challengerLeagues(let queue):
                 return baseURL.appendingPathComponents("challengerleagues/by-queue", queue.rawValue)

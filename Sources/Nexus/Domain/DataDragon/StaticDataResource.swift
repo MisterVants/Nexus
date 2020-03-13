@@ -7,6 +7,7 @@
 
 import Foundation
 
+// StaticDataFiles?
 enum StaticDataResource: APIMethod {
     
     case realm(_ region: Region)
@@ -25,7 +26,7 @@ enum StaticDataResource: APIMethod {
         fatalError() // FIXME
     }
     
-    func endpointPath(from baseURL: URL) -> URL {
+    func endpointURL(from baseURL: URL) -> URL {
         switch self {
         case .realm(let region):
             return baseURL.appendingPathComponents("realms", region.rawValue).json()

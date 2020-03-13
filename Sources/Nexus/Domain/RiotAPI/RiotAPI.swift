@@ -29,6 +29,7 @@ public struct RiotAPI: APIDomain {
     enum Endpoint: String {
         case championMastery    = "/lol/champion-mastery/v4"
         case league             = "/lol/league/v4"
+        case summoner           = "/lol/summoner/v4"
     }
     
     private static var regionalProviders: [Region : RateLimitedProvider] = [:]
@@ -44,7 +45,15 @@ public struct RiotAPI: APIDomain {
     public let region: Region
     
     var championMastery: ChampionMasteryEndpoint {
-        return buildEndpoint(ChampionMasteryAPI.self)
+        buildEndpoint(ChampionMasteryAPI.self)
+    }
+    
+    var league: LeagueEndpoint {
+        buildEndpoint(LeagueAPI.self)
+    }
+    
+    var summoner: SummonerEndpoint {
+        buildEndpoint(SummonerAPI.self)
     }
     
     init(region: Region) throws {
@@ -53,7 +62,7 @@ public struct RiotAPI: APIDomain {
     }
     
     private func buildEndpoint<T>(_ type: T.Type) -> T where T: RiotLiveEndpoint {
-        return T(domain: self, provider: Self.rateLimitedProvider(for: self.region))
+        return T(domain: self, provider: SimpleProvider())// FIXME: Self.rateLimitedProvider(for: self.region))
     }
 }
 

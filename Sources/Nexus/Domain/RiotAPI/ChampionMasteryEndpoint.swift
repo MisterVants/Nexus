@@ -35,7 +35,7 @@ extension ChampionMasteryAPI {
             }
         }
         
-        func endpointPath(from baseURL: URL) -> URL {
+        func endpointURL(from baseURL: URL) -> URL {
             switch self {
             case .masteryBySummoner(let summonerID):
                 return baseURL.appendingPathComponents("champion-masteries/by-summoner", summonerID)

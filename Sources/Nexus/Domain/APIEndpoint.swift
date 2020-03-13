@@ -27,11 +27,17 @@ extension RiotLiveEndpoint {
     func request<T: Decodable>(_ method: Method, queryParams: [String: String]? = nil, completion: @escaping (Response<T>) -> Void) {
         do {
             var queryParameters = queryParams ?? [:]
-            // if should send key in url
-//            queryParameters["api_key"] =
-            var headers: [String : String]?
+            var headers: [String : String] = [:]
             
-            let url = try domain.asURL().appendingPathComponent(method.endpointPath(from: try endpoint.asURL()).absoluteString)
+            // TODO: Improve this part
+            switch Nexus.apiKeyPolicy {
+            case .includeAsHeaderParameter:
+                headers["api_key"] = Nexus.apiKey
+            case .includeAsQueryParameter:
+                queryParameters["api_key"] = Nexus.apiKey
+            }
+            
+            let url = method.endpointURL(from: try domain.asURL().appendingPathComponent(endpoint))
             let request = APIRequest(url: url,
                                      queryParameters: queryParameters,
                                      httpHeaders: headers,

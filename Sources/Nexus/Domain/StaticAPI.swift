@@ -55,7 +55,7 @@ public struct StaticAPI: APIDomain {
     
     private func request<T: Decodable>(_ resource: APIMethod, completion: @escaping (Response<T>) -> Void) {
         do {
-            let url = resource.endpointPath(from: try self.asURL())
+            let url = resource.endpointURL(from: try self.asURL())
             let request = APIRequest(url: url, method: resource)
             provider.perform(request, completion: completion)
         } catch {
@@ -76,7 +76,7 @@ extension StaticResource: APIMethod {
     
     var methodSignature: String {fatalError()} // FIXME
     
-    func endpointPath(from baseURL: URL) -> URL {
+    func endpointURL(from baseURL: URL) -> URL {
         return baseURL.appendingPathComponents("docs", "lol", self.rawValue).json()
     }
 }

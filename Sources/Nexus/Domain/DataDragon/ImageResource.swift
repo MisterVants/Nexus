@@ -25,7 +25,7 @@ enum ImageResource: APIMethod {
     
     var methodSignature: String { fatalError()} // FIXME
     
-    func endpointPath(from baseURL: URL) -> URL {
+    func endpointURL(from baseURL: URL) -> URL {
         switch self {
         case .splashArt(let championID, let skinIndex):
             return baseURL.appendingPathComponents("champion", "splash", "\(championID)_\(skinIndex)").jpg()
