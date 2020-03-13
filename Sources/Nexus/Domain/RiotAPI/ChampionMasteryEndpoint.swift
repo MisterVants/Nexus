@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ChampionMasteryEndpoint {
+public protocol ChampionMasteryEndpoint {
     func getMasteries(bySummoner encryptedSummonerID: String, completion: @escaping (Response<[ChampionMastery]>) -> Void)
     func getMasteries(bySummoner encryptedSummonerID: String, byChampion championID: Int, completion: @escaping (Response<ChampionMastery>) -> Void)
     func getScore(bySummoner encryptedSummonerID: String, completion: @escaping (Response<Int>) -> Void)

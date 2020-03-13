@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SummonerEndpoint {
+public protocol SummonerEndpoint {
     func getSummoner(byEncryptedAccountID encryptedAccountID: String, completion: @escaping (Response<Summoner>) -> Void)
     func getSummoner(byName summonerName: String, completion: @escaping (Response<Summoner>) -> Void)
     func getSummoner(byPUUID puuid: String, completion: @escaping (Response<Summoner>) -> Void)

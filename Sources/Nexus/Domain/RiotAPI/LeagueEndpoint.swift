@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LeagueEndpoint {
+public protocol LeagueEndpoint {
     func getChallengerLeagues(byQueue queue: RankedQueue, completion: @escaping (Response<LeagueList>) -> Void)
     func getGrandmasterLeagues(byQueue queue: RankedQueue, completion: @escaping (Response<LeagueList>) -> Void)
     func getMasterLeagues(byQueue queue: RankedQueue, completion: @escaping (Response<LeagueList>) -> Void)
