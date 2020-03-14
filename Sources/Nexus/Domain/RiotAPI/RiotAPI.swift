@@ -30,7 +30,7 @@ public struct RiotAPI: APIDomain {
         case championMastery    = "/lol/champion-mastery/v4"
 //        case championRotation   = ""
         case league             = "/lol/league/v4"
-//        case match              = ""
+        case match              = "/lol/match/v4"
         case spectator          = "/lol/spectator/v4"
         case summoner           = "/lol/summoner/v4"
     }
@@ -53,6 +53,10 @@ public struct RiotAPI: APIDomain {
     
     public var league: LeagueEndpoint {
         buildEndpoint(LeagueAPI.self)
+    }
+    
+    public var match: MatchEndpoint {
+        buildEndpoint(MatchAPI.self)
     }
     
     public var spectator: SpectatorEndpoint {
