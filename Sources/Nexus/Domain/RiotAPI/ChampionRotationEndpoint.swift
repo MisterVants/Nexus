@@ -6,3 +6,31 @@
 //
 
 import Foundation
+
+public protocol ChampionRotationEndpoint {
+    func getChampionRotation(completion: @escaping (Response<ChampionRotationInfo>) -> ())
+}
+
+struct ChampionRotationAPI: RiotLiveEndpoint {
+    typealias Method = ChampionRotationMethod
+    let domain: APIDomain
+    let provider: Provider
+    let endpoint: RiotAPI.Endpoint = .championRotation
+}
+
+extension ChampionRotationAPI: ChampionRotationEndpoint {
+    
+    enum ChampionRotationMethod: APIMethod {
+        case championRotation
+        
+        var methodSignature: String { "championRotation" }
+        
+        func endpointURL(from baseURL: URL) -> URL {
+            return baseURL.appendingPathComponent("champion-rotations")
+        }
+    }
+    
+    func getChampionRotation(completion: @escaping (Response<ChampionRotationInfo>) -> ()) {
+        request(.championRotation, completion: completion)
+    }
+}

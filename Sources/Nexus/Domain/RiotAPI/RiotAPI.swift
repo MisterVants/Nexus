@@ -28,7 +28,7 @@ public struct RiotAPI: APIDomain {
     
     enum Endpoint: String {
         case championMastery    = "/lol/champion-mastery/v4"
-//        case championRotation   = ""
+        case championRotation   = "/lol/platform/v3"
         case league             = "/lol/league/v4"
         case match              = "/lol/match/v4"
         case spectator          = "/lol/spectator/v4"
@@ -49,6 +49,10 @@ public struct RiotAPI: APIDomain {
     
     public var championMastery: ChampionMasteryEndpoint {
         buildEndpoint(ChampionMasteryAPI.self)
+    }
+    
+    public var championRotation: ChampionRotationEndpoint {
+        buildEndpoint(ChampionRotationAPI.self)
     }
     
     public var league: LeagueEndpoint {
