@@ -27,7 +27,7 @@ extension ChampionMasteryAPI {
         case masteryBySummonerByChampion(_ summonerID: String, _ championID: Int)
         case masteryScoreBySummoner(_ summonerID: String)
         
-        var methodSignature: String {
+        var signature: String {
             switch self {
             case .masteryBySummoner:            return "masteryBySummoner"
             case .masteryBySummonerByChampion:  return "masteryBySummonerByChampion"

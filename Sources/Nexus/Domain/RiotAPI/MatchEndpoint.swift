@@ -44,7 +44,7 @@ extension MatchAPI {
         case matchlist(_ encryptedAccountID: String)
         case timeline(_ matchID: Int)
         
-        var methodSignature: String {
+        var signature: String {
             switch self {
             case .match:        return "match"
             case .matchlist:    return "matchlist"

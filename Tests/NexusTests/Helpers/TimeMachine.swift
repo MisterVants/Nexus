@@ -1,5 +1,5 @@
 //
-//  ChampionRotationInfo.swift
+//  TimeMachine.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,17 +22,21 @@
 //  SOFTWARE.
 //
 
-public struct ChampionRotationInfo: Codable, Equatable {
-    let freeChampionIDs: [Int]
-    let freeChampionIdsForNewPlayers: [Int]
-    let maxNewPlayerLevel: Int
-}
+import Foundation
 
-extension ChampionRotationInfo {
+class TimeMachine {
     
-    enum CodingKeys: String, CodingKey {
-        case maxNewPlayerLevel
-        case freeChampionIdsForNewPlayers
-        case freeChampionIDs = "freeChampionIds"
+    private var date = Date()
+    
+    func travel(by timeInterval: TimeInterval) {
+        date = date.addingTimeInterval(timeInterval)
+    }
+    
+    func travel(by timeInterval: Int) {
+        travel(by: TimeInterval(timeInterval))
+    }
+    
+    func getDate() -> Date {
+        return date
     }
 }

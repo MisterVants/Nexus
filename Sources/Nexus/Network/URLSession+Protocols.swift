@@ -1,5 +1,5 @@
 //
-//  ChampionRotationInfo.swift
+//  URLSession+Protocols.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,17 +22,21 @@
 //  SOFTWARE.
 //
 
-public struct ChampionRotationInfo: Codable, Equatable {
-    let freeChampionIDs: [Int]
-    let freeChampionIdsForNewPlayers: [Int]
-    let maxNewPlayerLevel: Int
+import Foundation
+
+protocol URLSessionProtocol {
+    typealias DataTaskHandler = (Data?, URLResponse?, Error?) -> Void
+    func dataTask(with request: URLRequest, completionHandler: @escaping DataTaskHandler) -> URLSessionDataTaskProtocol
 }
 
-extension ChampionRotationInfo {
-    
-    enum CodingKeys: String, CodingKey {
-        case maxNewPlayerLevel
-        case freeChampionIdsForNewPlayers
-        case freeChampionIDs = "freeChampionIds"
+extension URLSession: URLSessionProtocol {
+    func dataTask(with request: URLRequest, completionHandler: @escaping DataTaskHandler) -> URLSessionDataTaskProtocol {
+        return dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTask
     }
 }
+
+protocol URLSessionDataTaskProtocol {
+    func resume()
+}
+
+extension URLSessionDataTask: URLSessionDataTaskProtocol {}

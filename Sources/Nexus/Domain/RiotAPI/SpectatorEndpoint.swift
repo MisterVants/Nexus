@@ -25,7 +25,7 @@ extension SpectatorAPI {
         case activeGames(_ encryptedSummonerID: String)
         case featuredGames
         
-        var methodSignature: String {
+        var signature: String {
             switch self {
             case .activeGames:      return "activeGames"
             case .featuredGames:    return "featuredGames"

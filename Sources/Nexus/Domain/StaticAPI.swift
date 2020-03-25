@@ -57,7 +57,7 @@ public struct StaticAPI: APIDomain {
         do {
             let url = resource.endpointURL(from: try self.asURL())
             let request = APIRequest(url: url, method: resource)
-            provider.perform(request, completion: completion)
+            provider.send(request, completion: completion)
         } catch {
             fatalError()
         }
@@ -74,7 +74,7 @@ enum StaticResource: String {
 
 extension StaticResource: APIMethod {
     
-    var methodSignature: String {fatalError()} // FIXME
+    var signature: String {fatalError()} // FIXME
     
     func endpointURL(from baseURL: URL) -> URL {
         return baseURL.appendingPathComponents("docs", "lol", self.rawValue).json()

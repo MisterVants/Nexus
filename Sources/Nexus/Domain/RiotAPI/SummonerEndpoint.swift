@@ -29,7 +29,7 @@ extension SummonerAPI {
         case summonerByPUUID(_ puuid: String)
         case summonerByID(_ encryptedSummonerID: String)
         
-        var methodSignature: String {
+        var signature: String {
             switch self {
             case .summonerByAccount:    return "summonerByAccount"
             case .summonerByName:       return "summonerByName"

@@ -22,7 +22,7 @@ enum StaticDataResource: APIMethod {
     case maps
     case localizedStrings
     
-    var methodSignature: String {
+    var signature: String {
         fatalError() // FIXME
     }
     

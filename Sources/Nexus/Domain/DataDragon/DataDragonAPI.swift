@@ -78,7 +78,7 @@ public struct DataDragonAPI: APIDomain {
         do {
             let url = resource.endpointURL(from: type.pathURL(from: try self.asURL()))
             let request = APIRequest(url: url, method: resource)
-            provider.perform(request, completion: completion)
+            provider.send(request, completion: completion)
         } catch {
             fatalError()
         }

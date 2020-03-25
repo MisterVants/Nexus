@@ -23,7 +23,7 @@ extension ChampionRotationAPI: ChampionRotationEndpoint {
     enum ChampionRotationMethod: APIMethod {
         case championRotation
         
-        var methodSignature: String { "championRotation" }
+        var signature: String { "championRotation" }
         
         func endpointURL(from baseURL: URL) -> URL {
             return baseURL.appendingPathComponent("champion-rotations")

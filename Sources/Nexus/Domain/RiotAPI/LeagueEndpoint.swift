@@ -33,7 +33,7 @@ extension LeagueAPI {
         case entries(_ queue: RankedQueue, _ tier: RankedTier, _ division: RankedDivision)
         case entriesBySummoner(_ summonerID: String)
         
-        var methodSignature: String {
+        var signature: String {
             switch self {
             case .challengerLeagues:    return "challengerLeagues"
             case .grandmasterLeagues:   return "grandmasterLeagues"

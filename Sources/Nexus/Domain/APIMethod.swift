@@ -9,7 +9,7 @@ import Foundation
 
 protocol APIMethod {
     var httpMethod: HTTPMethod {get}
-    var methodSignature: String {get}
+    var signature: String {get}
     func endpointURL(from baseURL: URL) -> URL
 }
 

@@ -23,7 +23,7 @@ enum ImageResource: APIMethod {
     case spriteSheet(_ filename: String)
     case scoreboardIcon(_ iconType: ScoreboardIcon)
     
-    var methodSignature: String { fatalError()} // FIXME
+    var signature: String { fatalError()} // FIXME
     
     func endpointURL(from baseURL: URL) -> URL {
         switch self {
