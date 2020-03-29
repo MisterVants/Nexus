@@ -27,3 +27,17 @@ extension URLComponents: URLConvertible {
         return url
     }
 }
+
+extension String: URLConvertible {
+    public func asURL() throws -> URL {
+        guard let url = URL(string: self) else { throw URLError.invalidURL(url: self) }
+        return url
+    }
+}
+
+extension RawRepresentable where Self : URLConvertible, Self.RawValue == String {
+    public func asURL() throws -> URL {
+        guard let url = URL(string: self.rawValue) else { throw URLError.invalidURL(url: self) }
+        return url
+    }
+}

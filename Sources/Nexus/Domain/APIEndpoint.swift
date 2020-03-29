@@ -55,7 +55,7 @@ extension RiotLiveEndpoint {
             }
             
             let url = method.endpointURL(from: try domain.asURL().appendingPathComponent(endpoint))
-            let request = APIRequest(url: url,
+            let request = APIRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData,
                                      queryParameters: queryParameters,
                                      httpHeaders: headers,
                                      method: method)

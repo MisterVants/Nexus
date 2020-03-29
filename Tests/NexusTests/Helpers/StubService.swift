@@ -28,12 +28,20 @@ import Foundation
 final class StubService {
     
     static func stubData<T>(_ type: T.Type) -> Data {
-        if type == ChampionRotationInfo.self {
-            return stubChampionRotationJSON.data(using: .utf8)!
-        } else if type == Summoner.self {
-            return stubSummonerJSON.data(using: .utf8)!
+        switch type {
+        case is Realm.Type:                 return stubRealmJSON.data(using: .utf8)!
+        case is ChampionRotationInfo.Type:  return stubChampionRotationJSON.data(using: .utf8)!
+        case is Summoner.Type:              return stubSummonerJSON.data(using: .utf8)!
+        default:
+            fatalError("FATAL: [Test Service] Data for type '\(type.self)' don't exist.")
         }
-        fatalError("FATAL: [Test Service] Data for type '\(type.self)' don't exist.")
+        
+//        if type == ChampionRotationInfo.self {
+//            return stubChampionRotationJSON.data(using: .utf8)!
+//        } else if type == Summoner.self {
+//            return stubSummonerJSON.data(using: .utf8)!
+//        }
+        
     }
     
     static func stubModel<T: Decodable>(_ type: T.Type) -> T {
@@ -44,6 +52,30 @@ final class StubService {
             fatalError("FATAL: [Test Service] Cannot decode data for type \(type.self) - ERROR: \(error)")
         }
     }
+    
+    private static let stubRealmJSON = """
+    {
+        "n": {
+            "item": "10.6.1",
+            "rune": "7.23.1",
+            "mastery": "7.23.1",
+            "summoner": "10.6.1",
+            "champion": "10.6.1",
+            "profileicon": "10.6.1",
+            "map": "10.6.1",
+            "language": "10.6.1",
+            "sticker": "10.6.1"
+        },
+        "v": "10.6.1",
+        "l": "en_US",
+        "cdn": "https://ddragon.leagueoflegends.com/cdn",
+        "dd": "10.6.1",
+        "lg": "10.6.1",
+        "css": "10.6.1",
+        "profileiconmax": 28,
+        "store": null
+    }
+    """
     
     private static let stubChampionRotationJSON = """
     {

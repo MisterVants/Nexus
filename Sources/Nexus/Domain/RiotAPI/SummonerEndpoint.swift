@@ -43,7 +43,6 @@ extension SummonerAPI {
             case .summonerByAccount(let encryptedAccountID):
                 return baseURL.appendingPathComponents("summoners/by-account", encryptedAccountID)
             case .summonerByName(let name):
-                print("URL PATH: \(baseURL.appendingPathComponents("summoners/by-name", name))")
                 return baseURL.appendingPathComponents("summoners/by-name", name)
             case .summonerByPUUID(let puuid):
                 return baseURL.appendingPathComponents("summoners/by-puuid", puuid)

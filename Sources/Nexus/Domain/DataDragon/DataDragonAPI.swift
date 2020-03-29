@@ -54,33 +54,33 @@ public protocol ImageAssetsAPI {
     func getScoreboardIcon(byType iconType: ScoreboardIcon, completion: @escaping (Response<Data>) -> Void)
 }
 
-// TODO: Protocols to separate data and images apis
 public struct DataDragonAPI: APIDomain {
     
-    public init() {}
-    
-    let provider: Provider = SimpleProvider() // Only for experimenting, refactor later
-    
+    let provider: Provider
     var dataAPI: DataFilesAPI { self as DataFilesAPI }
-    
     var imagesAPI: ImageAssetsAPI { self as ImageAssetsAPI}
     
-    private func get<T: Decodable>(_ resource: StaticDataResource, type: ResourceType, completion: @escaping (Response<T>) -> Void) {
+    init(provider: Provider = DataProvider()) {
+        self.provider = provider
+    }
+    
+    func get<T: Decodable>(_ resource: StaticDataResource, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
         request(resource, type: type, completion: completion)
     }
     
-    private func get<T: Decodable>(_ resource: ImageResource, type: ResourceType, completion: @escaping (Response<T>) -> Void) {
+    func get<T: Decodable>(_ resource: ImageResource, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
         request(resource, type: type, completion: completion)
     }
     
-    // Put this in protocol?
-    private func request<T: Decodable>(_ resource: APIMethod, type: ResourceType, completion: @escaping (Response<T>) -> Void) {
+    func request<T: Decodable>(_ resource: APIMethod, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
         do {
             let url = resource.endpointURL(from: type.pathURL(from: try self.asURL()))
-            let request = APIRequest(url: url, method: resource)
+            let request = APIRequest(url: url,
+                                     cachePolicy: type.isNone ? .reloadRevalidatingCacheData : .returnCacheDataElseLoad,
+                                     method: resource)
             provider.send(request, completion: completion)
         } catch {
-            fatalError()
+            completion(Response(error: error))
         }
     }
 }
@@ -185,33 +185,4 @@ extension DataDragonAPI: ImageAssetsAPI {
     public func getScoreboardIcon(byType iconType: ScoreboardIcon, completion: @escaping (Response<Data>) -> Void) {
         get(.scoreboardIcon(iconType), type: .versionedImage("5.5.1"), completion: completion)
     }
-}
-
-enum ResourceType {
-    case versionedData(_ version: String, _ locale: String)
-    case versionedImage(_ version: String)
-    case image
-    case none
-    
-    func pathURL(from baseURL: URL) -> URL {
-        switch self {
-        case .versionedData(let version, let locale):
-            return baseURL.appendingPathComponents("cdn", version, "data", locale)
-        case .versionedImage(let version):
-            return baseURL.appendingPathComponents("cdn", version, "img")
-        case .image:
-            return baseURL.appendingPathComponents("cdn", "img")
-        default:
-            return baseURL
-        }
-    }
-}
-
-public enum ScoreboardIcon: String, CaseIterable {
-    case champion
-    case gold
-    case items
-    case minion
-    case score
-    case spells
 }

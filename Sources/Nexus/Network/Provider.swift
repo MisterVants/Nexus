@@ -5,22 +5,17 @@
 //  Created by André Vants Soares de Almeida on 27/02/20.
 //
 
+import Foundation
+
 protocol Provider {
     func send<T: Decodable>(_ apiRequest: APIRequest, completion: @escaping (Response<T>) -> Void)
 }
 
-// TODO: Implement networking
-extension Provider {
-    func send<T: Decodable>(_ apiRequest: APIRequest, completion: @escaping (Response<T>) -> Void) {
-        completion(Response(request: try! apiRequest.asURLRequest(), data: nil, response: nil, error: nil))
-    }
-}
-
-import Foundation
-
-class SimpleProvider: Provider {
+class DataProvider: Provider {
     
-    func send<T>(_ apiRequest: APIRequest, completion: @escaping (Response<T>) -> Void) where T : Decodable {
+    static let shared = DataProvider()
+    
+    func send<T: Decodable>(_ apiRequest: APIRequest, completion: @escaping (Response<T>) -> Void) {
         do {
             let request = try apiRequest.asURLRequest()
             URLSession.shared.dataTask(with: request) { (data, response, error) in

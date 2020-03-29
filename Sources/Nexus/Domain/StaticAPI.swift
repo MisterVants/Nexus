@@ -26,8 +26,11 @@ import Foundation
 
 public struct StaticAPI: APIDomain {
     
-    public init() {}
-    let provider: Provider = SimpleProvider()
+    let provider: Provider
+    
+    init(provider: Provider = DataProvider()) {
+        self.provider = provider
+    }
     
     public func getSeasons(completion: @escaping (Response<[Season]>) -> Void) {
         get(.seasons, completion: completion)
@@ -56,10 +59,10 @@ public struct StaticAPI: APIDomain {
     private func request<T: Decodable>(_ resource: APIMethod, completion: @escaping (Response<T>) -> Void) {
         do {
             let url = resource.endpointURL(from: try self.asURL())
-            let request = APIRequest(url: url, method: resource)
+            let request = APIRequest(url: url, cachePolicy: .useProtocolCachePolicy, method: resource)
             provider.send(request, completion: completion)
         } catch {
-            fatalError()
+            completion(Response(error: error))
         }
     }
 }

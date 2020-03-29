@@ -1,5 +1,5 @@
 //
-//  NexusError.swift
+//  ScoreboardIcon.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,11 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
-public enum NexusError: Error {
-    case apiKeyNotFound
-    
-    case automanagedVersionLoadFail(Error)
-    
-    case invalidURL(url: URLConvertible)
-    case dataTaskError(Error)
-    case dataTaskCancelled
-    case noResponse
-    case badStatusCode(HTTPStatusCode)
-    case responseDataNil
-    case jsonDecodeFailed(Error, Data)
-    
-    case rateLimitExceeded
-    case rateLimitUndefined
-}
-
-extension NexusError {
-    
-    var localizedDescription: String {
-        switch self {
-        case .noResponse:
-            return "No response received from the server"
-        default:
-            return "no description"
-        }
-    }
-}
-
-extension NexusError {
-    
-    var isRateLimitExceededError: Bool {
-        if case .dataTaskError(let error) = self, let nexusError = error as? NexusError, case .rateLimitExceeded = nexusError { return true }
-        return false
-    }
+public enum ScoreboardIcon: String, CaseIterable {
+    case champion
+    case gold
+    case items
+    case minion
+    case score
+    case spells
 }

@@ -26,7 +26,7 @@ import Foundation
 
 public struct RiotAPI: APIDomain {
     
-    enum Endpoint: String {
+    enum Endpoint: String, URLConvertible {
         case championMastery    = "/lol/champion-mastery/v4"
         case championRotation   = "/lol/platform/v3"
         case league             = "/lol/league/v4"
@@ -36,6 +36,7 @@ public struct RiotAPI: APIDomain {
     }
     
     private static var regionalProviders: [Region : RateLimitedProvider] = [:]
+    
     private static func rateLimitedProvider(for region: Region) -> RateLimitedProvider {
         guard let provider = regionalProviders[region] else {
             let newProvider = RateLimitedProvider()
@@ -77,13 +78,6 @@ public struct RiotAPI: APIDomain {
     }
     
     private func buildEndpoint<T>(_ type: T.Type) -> T where T: RiotLiveEndpoint {
-        return T(domain: self, provider: SimpleProvider())// FIXME: Self.rateLimitedProvider(for: self.region))
-    }
-}
-
-extension RiotAPI.Endpoint: URLConvertible {
-    public func asURL() throws -> URL {
-        guard let url = URL(string: self.rawValue) else { fatalError() }//throw AFError.invalidURL(url: self) }
-        return url
+        return T(domain: self, provider: Self.rateLimitedProvider(for: self.region))
     }
 }

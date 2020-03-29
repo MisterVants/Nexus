@@ -36,7 +36,7 @@ fileprivate struct APIMethodMock: APIMethod {
 fileprivate extension APIRequest {
     
     static func mock(urlString: String = "https://httpbin.org/get", method: String? = nil) -> APIRequest {
-        return APIRequest(url: URL(string: urlString)!, queryParameters: nil, httpHeaders: nil, method: APIMethodMock(signature: method ?? urlString))
+        return APIRequest(url: URL(string: urlString)!, cachePolicy: .reloadIgnoringLocalCacheData, queryParameters: nil, httpHeaders: nil, method: APIMethodMock(signature: method ?? urlString))
     }
 }
 
