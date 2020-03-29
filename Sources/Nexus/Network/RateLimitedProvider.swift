@@ -24,7 +24,7 @@
 
 import Foundation
 
-internal class RateLimitedProvider: Provider {
+final class RateLimitedProvider {
     
     typealias PendingRequest = () -> Void
     typealias URLTaskHandler = (Data?, URLResponse?, Error?) -> Void

@@ -34,14 +34,7 @@ final class StubService {
         case is Summoner.Type:              return stubSummonerJSON.data(using: .utf8)!
         default:
             fatalError("FATAL: [Test Service] Data for type '\(type.self)' don't exist.")
-        }
-        
-//        if type == ChampionRotationInfo.self {
-//            return stubChampionRotationJSON.data(using: .utf8)!
-//        } else if type == Summoner.self {
-//            return stubSummonerJSON.data(using: .utf8)!
-//        }
-        
+        }        
     }
     
     static func stubModel<T: Decodable>(_ type: T.Type) -> T {

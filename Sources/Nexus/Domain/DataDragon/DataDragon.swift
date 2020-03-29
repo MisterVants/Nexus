@@ -197,15 +197,15 @@ open class DataDragon {
     
     // MARK: Automanaged Data Access
     
-    func getData<T: Decodable>(_ resource: StaticDataResource, typeProvider: @escaping TypeProvider, completion: @escaping (Response<T>) -> Void) {
+    func getData<T: Decodable>(_ resource: StaticData, typeProvider: @escaping TypeProvider, completion: @escaping (Response<T>) -> Void) {
         requestVersioned(resource, typeProvider: typeProvider, completion: completion)
     }
     
-    func getImage<T: Decodable>(_ resource: ImageResource, typeProvider: @escaping TypeProvider, completion: @escaping (Response<T>) -> Void) {
+    func getImage<T: Decodable>(_ resource: ImageAsset, typeProvider: @escaping TypeProvider, completion: @escaping (Response<T>) -> Void) {
         requestVersioned(resource, typeProvider: typeProvider, completion: completion)
     }
     
-    func requestVersioned<T: Decodable>(_ resource: APIMethod, typeProvider: @escaping TypeProvider, completion: @escaping (Response<T>) -> Void) {
+    func requestVersioned<T: Decodable>(_ resource: APIResource, typeProvider: @escaping TypeProvider, completion: @escaping (Response<T>) -> Void) {
         if let version = currentVersion, let locale = currentLocale {
             api.request(resource, type: typeProvider(version, locale), completion: completion)
         } else {

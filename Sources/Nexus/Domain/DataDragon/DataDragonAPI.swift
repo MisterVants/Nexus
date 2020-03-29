@@ -64,20 +64,20 @@ public struct DataDragonAPI: APIDomain {
         self.provider = provider
     }
     
-    func get<T: Decodable>(_ resource: StaticDataResource, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
+    func get<T: Decodable>(_ resource: StaticData, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
         request(resource, type: type, completion: completion)
     }
     
-    func get<T: Decodable>(_ resource: ImageResource, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
+    func get<T: Decodable>(_ resource: ImageAsset, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
         request(resource, type: type, completion: completion)
     }
     
-    func request<T: Decodable>(_ resource: APIMethod, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
+    func request<T: Decodable>(_ resource: APIResource, type: DataDragon.ResourceType, completion: @escaping (Response<T>) -> Void) {
         do {
             let url = resource.endpointURL(from: type.pathURL(from: try self.asURL()))
-            let request = APIRequest(url: url,
-                                     cachePolicy: type.isNone ? .reloadRevalidatingCacheData : .returnCacheDataElseLoad,
-                                     method: resource)
+            let request = DataRequest(resource: resource,
+                                      url: url,
+                                      cachePolicy: type.isNone ? .reloadRevalidatingCacheData : .returnCacheDataElseLoad)
             provider.send(request, completion: completion)
         } catch {
             completion(Response(error: error))

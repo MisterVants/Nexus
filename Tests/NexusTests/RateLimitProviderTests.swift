@@ -36,7 +36,11 @@ fileprivate struct APIMethodMock: APIMethod {
 fileprivate extension APIRequest {
     
     static func mock(urlString: String = "https://httpbin.org/get", method: String? = nil) -> APIRequest {
-        return APIRequest(url: URL(string: urlString)!, cachePolicy: .reloadIgnoringLocalCacheData, queryParameters: nil, httpHeaders: nil, method: APIMethodMock(signature: method ?? urlString))
+        return APIRequest(method: APIMethodMock(signature: method ?? urlString),
+                          url: URL(string: urlString)!,
+                          cachePolicy: .reloadIgnoringLocalCacheData,
+                          queryParameters: nil,
+                          httpHeaders: nil)
     }
 }
 
@@ -216,6 +220,7 @@ final class RateLimitedProviderTests: XCTestCase {
     
     // MARK: Real Model Integration Tests
     
+    // FIXME: This test case fails rarely
     func testPendingRequest_afterSendingExplorerRequest() {
         let requestA = APIRequest.mock(urlString: "https://httpbin.org/get/A")
         let requestB = APIRequest.mock(urlString: "https://httpbin.org/get/B")

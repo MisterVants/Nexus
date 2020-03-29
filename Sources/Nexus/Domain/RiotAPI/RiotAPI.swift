@@ -72,12 +72,12 @@ public struct RiotAPI: APIDomain {
         buildEndpoint(SummonerAPI.self)
     }
     
-    init(region: Region) throws {
+    public init(region: Region) throws {
         guard Nexus.apiKey != nil else { throw NexusError.apiKeyNotFound }
         self.region = region
     }
     
-    private func buildEndpoint<T>(_ type: T.Type) -> T where T: RiotLiveEndpoint {
+    private func buildEndpoint<T>(_ type: T.Type) -> T where T: APIEndpoint {
         return T(domain: self, provider: Self.rateLimitedProvider(for: self.region))
     }
 }

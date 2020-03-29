@@ -23,23 +23,18 @@
 //
 
 protocol APIEndpoint {
-    var domain: APIDomain {get}
-    var provider: Provider {get}
-    init(domain: APIDomain, provider: Provider)
-}
-
-protocol RiotLiveEndpoint: APIEndpoint {
     associatedtype Method: APIMethod
+    
+    var domain: APIDomain {get}
+    var provider: RateLimitedProvider {get}
     var endpoint: RiotAPI.Endpoint {get}
-    init(api: RiotAPI, provider: Provider)
+    
+    init(domain: APIDomain, provider: RateLimitedProvider)
+    
     func request<T: Decodable>(_ method: Method, queryParams: [String: String]?, completion: @escaping (Response<T>) -> Void)
 }
 
-extension RiotLiveEndpoint {
-    
-    init(api: RiotAPI, provider: Provider) {
-        self.init(domain: api, provider: provider)
-    }
+extension APIEndpoint {
     
     func request<T: Decodable>(_ method: Method, queryParams: [String: String]? = nil, completion: @escaping (Response<T>) -> Void) {
         do {
@@ -55,10 +50,10 @@ extension RiotLiveEndpoint {
             }
             
             let url = method.endpointURL(from: try domain.asURL().appendingPathComponent(endpoint))
-            let request = APIRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData,
+            let request = APIRequest(method: method,
+                                     url: url, cachePolicy: .reloadIgnoringLocalCacheData,
                                      queryParameters: queryParameters,
-                                     httpHeaders: headers,
-                                     method: method)
+                                     httpHeaders: headers)
             print("Request created with url: \(try! request.asURL())")
             provider.send(request, completion: completion)
         } catch {

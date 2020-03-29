@@ -30,10 +30,10 @@ public protocol MatchEndpoint {
     func getTimeline(byMatchID matchID: Int, completion: @escaping (Response<MatchTimeline>) -> Void)
 }
 
-struct MatchAPI: RiotLiveEndpoint {
+struct MatchAPI: APIEndpoint {
     typealias Method = MatchMethod
     let domain: APIDomain
-    let provider: Provider
+    let provider: RateLimitedProvider
     let endpoint: RiotAPI.Endpoint = .match
 }
 

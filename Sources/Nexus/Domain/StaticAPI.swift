@@ -26,6 +26,18 @@ import Foundation
 
 public struct StaticAPI: APIDomain {
     
+    enum Asset: String, APIResource {
+        case seasons
+        case queues
+        case maps
+        case gameModes
+        case gameTypes
+        
+        func endpointURL(from baseURL: URL) -> URL {
+            return baseURL.appendingPathComponents("docs", "lol", self.rawValue).json()
+        }
+    }
+    
     let provider: Provider
     
     init(provider: Provider = DataProvider()) {
@@ -52,34 +64,17 @@ public struct StaticAPI: APIDomain {
         get(.gameTypes ,completion: completion)
     }
     
-    private func get<T: Decodable>(_ resource: StaticResource, completion: @escaping (Response<T>) -> Void) {
+    private func get<T: Decodable>(_ resource: Asset, completion: @escaping (Response<T>) -> Void) {
         request(resource, completion: completion)
     }
     
-    private func request<T: Decodable>(_ resource: APIMethod, completion: @escaping (Response<T>) -> Void) {
+    private func request<T: Decodable>(_ resource: APIResource, completion: @escaping (Response<T>) -> Void) {
         do {
             let url = resource.endpointURL(from: try self.asURL())
-            let request = APIRequest(url: url, cachePolicy: .useProtocolCachePolicy, method: resource)
+            let request = DataRequest(resource: resource, url: url, cachePolicy: .useProtocolCachePolicy)
             provider.send(request, completion: completion)
         } catch {
             completion(Response(error: error))
         }
-    }
-}
-
-enum StaticResource: String {
-    case seasons
-    case queues
-    case maps
-    case gameModes
-    case gameTypes
-}
-
-extension StaticResource: APIMethod {
-    
-    var signature: String {fatalError()} // FIXME
-    
-    func endpointURL(from baseURL: URL) -> URL {
-        return baseURL.appendingPathComponents("docs", "lol", self.rawValue).json()
     }
 }
