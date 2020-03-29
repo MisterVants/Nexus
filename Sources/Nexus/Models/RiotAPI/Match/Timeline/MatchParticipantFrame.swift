@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  MatchParticipantFrame.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,31 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+public struct MatchParticipantFrame: Codable {
+    let participantID: Int
+    let level: Int?
+    let experiencePoints: Int?
+    let totalGold: Int?
+    let currentGold: Int?
+    let minionsKilled: Int?
+    let jungleMinionsKilled: Int?
+    let position: MatchPosition?
+    let teamScore: Int?
+    let dominionScore: Int?
+}
+
+internal extension MatchParticipantFrame {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
-    
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
-    
-    public private(set) static var apiKey: String?
-    
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
-    }
-    
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
+    enum CodingKeys: String, CodingKey {
+        case totalGold
+        case teamScore
+        case participantID = "participantId"
+        case level
+        case currentGold
+        case minionsKilled
+        case dominionScore
+        case position
+        case experiencePoints = "xp"
+        case jungleMinionsKilled
     }
 }

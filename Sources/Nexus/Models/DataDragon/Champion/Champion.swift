@@ -1,6 +1,6 @@
 //
-//  Nexus.swift
-//
+//  Champion.swift
+//  
 //  Copyright (c) 2020 André Vants
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,41 +22,44 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+public struct Champion: Codable {
+
+    /// A string that identifies the champion.
+    public let id: String
+
+    /// A number string that uniquely identifies the champion.
+    public let key: String
+
+    /// The champion's name string.
+    public let name: String
+
+    /// The champion's title string.
+    public let title: String
+
+    public let blurb: String // lore reduced
+
+    public let lore: String?
+
+    public let tags: [String] // mage, fighter, etc
+
+    public let allytips: [String]?
+
+    public let enemytips: [String]?
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
+    public let info: ChampionInfo
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
-    
-    public private(set) static var apiKey: String?
-    
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
-    }
-    
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
-    }
+    public let stats: ChampionStats
+
+    public let skins: [ChampionSkin]?
+
+    public let spells: [ChampionSpell]?
+
+    public let passive: ChampionPassive?
+}
+
+public struct ChampionDto: Codable {
+    public let data: [String : Champion]
+    public let version: String
+    public let type: String
+    internal let format: String
 }

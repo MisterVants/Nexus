@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  TimeMachine.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,21 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+import Foundation
+
+class TimeMachine {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
+    private var date = Date()
+    
+    func travel(by timeInterval: TimeInterval) {
+        date = date.addingTimeInterval(timeInterval)
     }
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
-    
-    public private(set) static var apiKey: String?
-    
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
+    func travel(by timeInterval: Int) {
+        travel(by: TimeInterval(timeInterval))
     }
     
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
+    func getDate() -> Date {
+        return date
     }
 }

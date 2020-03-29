@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  NexusError.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,41 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+import Foundation
+
+public enum NexusError: Error {
+    case apiKeyNotFound
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
+    case automanagedVersionLoadFail(Error)
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
+    case invalidURL(url: URLConvertible)
+    case dataTaskError(Error)
+    case dataTaskCancelled
+    case noResponse
+    case badStatusCode(HTTPStatusCode)
+    case responseDataNil
+    case jsonDecodeFailed(Error, Data)
     
-    public private(set) static var apiKey: String?
+    case rateLimitExceeded
+    case rateLimitUndefined
+}
+
+extension NexusError {
     
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
+    var localizedDescription: String {
+        switch self {
+        case .noResponse:
+            return "No response received from the server"
+        default:
+            return "no description"
         }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
     }
+}
+
+extension NexusError {
     
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
+    var isRateLimitExceededError: Bool {
+        if case .dataTaskError(let error) = self, let nexusError = error as? NexusError, case .rateLimitExceeded = nexusError { return true }
+        return false
     }
 }

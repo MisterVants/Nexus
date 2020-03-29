@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  SpellVars.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,34 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+public struct SpellVars: Codable {
+    public let ranksWith: String?
+    public let dyn: String?
+    public let link: String
+    public let coeff: CoeffType
+    public let key: String
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
-    
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
-    
-    public private(set) static var apiKey: String?
-    
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
+    public enum CoeffType: Codable {
+        case number(Double)
+        case array([Double])
+        
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            
+            if let double = try? container.decode(Double.self) {
+                self = .number(double)
+            } else {
+                let array = try container.decode([Double].self)
+                self = .array(array)
+            }
         }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .number(let number): try container.encode(number)
+            case .array(let array): try container.encode(array)
+            }
         }
-        Nexus.apiKey = apiKey
-    }
-    
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
     }
 }

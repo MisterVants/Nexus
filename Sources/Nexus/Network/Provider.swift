@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  Provider.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,24 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+import Foundation
+
+protocol Provider {
+    func send<T: Decodable>(_ apiRequest: DataRequest, completion: @escaping (Response<T>) -> Void)
+}
+
+class DataProvider: Provider {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
+    static let shared = DataProvider()
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
-    
-    public private(set) static var apiKey: String?
-    
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
+    func send<T: Decodable>(_ apiRequest: DataRequest, completion: @escaping (Response<T>) -> Void) {
+        do {
+            let request = try apiRequest.asURLRequest()
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                completion(Response(request: request, data: data, response: response, error: error))
+            }.resume()
+        } catch {
+            completion(Response(error: error))
         }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
-    }
-    
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
     }
 }

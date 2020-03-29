@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  MatchParticipantIdentity.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,19 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+public struct MatchParticipantIdentity: Codable {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
+    /// The ID value of this participant.
+    let participantID: Int
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
-    
-    public private(set) static var apiKey: String?
-    
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
-    }
-    
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
+    /// Player information about this participant.
+    let player: MatchPlayer
+}
+
+extension MatchParticipantIdentity {
+
+    enum CodingKeys: String, CodingKey {
+        case player
+        case participantID = "participantId"
     }
 }

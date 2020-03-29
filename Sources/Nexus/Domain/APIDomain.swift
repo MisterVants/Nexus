@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  APIDomain.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,48 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+import Foundation
+
+fileprivate enum DomainName: String {
+    case riotAPI    = "api.riotgames.com"
+    case staticAPI  = "static.developer.riotgames.com"
+    case dataDragon = "ddragon.leagueoflegends.com"
+}
+
+public protocol APIDomain: URLConvertible {
+    var urlScheme: String {get}
+    var hostname: String {get}
+}
+
+extension APIDomain {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
+    public var urlScheme: String { "https" }
+    
+    public func asURL() throws -> URL {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = urlScheme
+        urlComponents.host = hostname
+        return try urlComponents.asURL()
     }
+}
+
+extension APIDomain where Self == RiotAPI {
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
-    
-    public private(set) static var apiKey: String?
-    
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
+    public var hostname: String {
+        "\(self.region.platform).\(DomainName.riotAPI.rawValue)"
     }
+}
+
+extension APIDomain where Self == StaticAPI {
     
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
+    public var hostname: String {
+        DomainName.staticAPI.rawValue
     }
+}
+
+extension APIDomain where Self == DataDragonAPI {
     
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
+    public var hostname: String {
+        DomainName.dataDragon.rawValue
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  MatchReference.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,36 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+public struct MatchReference: Codable {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
+    /// The ID value of the match. Can be used as parameter for /matches/{matchId} endpoint method.
+    let gameID: Int
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
+    /// The ID value for the platform in which the match was played.
+    let platformID: String
     
-    public private(set) static var apiKey: String?
+    /// The ID value of the season. Please refer to the Game Constants documentation.
+    let seasonID: Int
     
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
-    }
+    /// The ID value of the queue. Please refer to the Game Constants documentation.
+    let queueId: Int
     
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
+    /// The ID value of the champion played during the match.
+    let championID: Int
     
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
+    let lane: String?
+    let role: String?
+    let timestamp: Int
+}
+
+extension MatchReference {
     
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
+    enum CodingKeys: String, CodingKey {
+        case lane, role, timestamp
+        case gameID     = "gameId"
+        case championID = "champion"
+        case platformID = "platformId"
+        case seasonID   = "season"
+        case queueId    = "queue"
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  FeaturedGameInfo.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,38 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+public struct FeaturedGameInfo: Codable {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
+    /// The ID value of the game.
+    let gameId: Int
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
+    /// The ID value of the platform on which the game is being played.
+    let platformId: String
     
-    public private(set) static var apiKey: String?
+    /// The queue type (queue types are documented on the Game Constants page).
+    let gameQueueConfigId: Int
     
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
-    }
+    /// The ID value of the map.
+    let mapId: Int
     
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
+    /// The game mode being played.
+    let gameMode: String
     
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
+    /// The game type being played.
+    let gameType: String
     
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
+    /// The game start time represented in epoch milliseconds.
+    let gameStartTime: Int
     
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
-    }
+    /// The amount of time in seconds that has passed since the game started.
+    let gameLength: Int
+    
+    /// The observer information.
+    let observers: Observer
+    
+    /// Banned champions information.
+    let bannedChampions: [BannedChampion]
+    
+    /// The game participant information.
+    let participants: [FeaturedGameParticipant]
 }

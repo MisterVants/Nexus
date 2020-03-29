@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  Minimap.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,23 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+public struct Minimap: Codable {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
+    /// A numeric string identifier for the game map.
+    public let mapID: String
     
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
+    /// The name of the game map.
+    public let mapName: String
     
-    public private(set) static var apiKey: String?
+    /// The map's image sprite parameters.
+    public let image: ImageMetadata?
+}
+
+extension Minimap {
     
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
-    }
-    
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
+    enum CodingKeys: String, CodingKey {
+        case mapName = "MapName"
+        case mapID = "MapId"
+        case image
     }
 }

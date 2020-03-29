@@ -1,5 +1,5 @@
 //
-//  Nexus.swift
+//  Season.swift
 //
 //  Copyright (c) 2020 André Vants
 //
@@ -22,41 +22,18 @@
 //  SOFTWARE.
 //
 
-public struct Nexus {
+public struct Queue: Codable {
+    public let queueID: Int
+    public let map: String
+    public let descriptionText: String?
+    public let notes: String?
+}
+
+extension Queue {
     
-    public enum APIKeyPolicy {
-        case includeAsHeaderParameter
-        case includeAsQueryParameter
-    }
-    
-    public static var apiKeyPolicy: APIKeyPolicy = .includeAsHeaderParameter
-    
-    public private(set) static var apiKey: String?
-    
-    public static func setApiKey(_ apiKey: String) {
-        guard Nexus.apiKey == nil else {
-            // TODO: log error
-            return
-        }
-        guard !apiKey.isEmpty else {
-            fatalError("Trying to assign an empty API key to Nexus.")
-        }
-        Nexus.apiKey = apiKey
-    }
-    
-    public static func riotAPI(region: Region) throws -> RiotAPI {
-        try RiotAPI(region: region)
-    }
-    
-    public static func staticAPI() -> StaticAPI {
-        StaticAPI()
-    }
-    
-    public static func dataDragonAPI() -> DataDragonAPI {
-        DataDragonAPI()
-    }
-    
-    public static func dataDragon(region: Region) -> DataDragon {
-        DataDragon(region: region)
+    enum CodingKeys: String, CodingKey {
+        case map, notes
+        case queueID = "queueId"
+        case descriptionText = "description"
     }
 }
