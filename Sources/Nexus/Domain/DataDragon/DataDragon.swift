@@ -111,7 +111,7 @@ open class DataDragon {
         getData(.localizedStrings, typeProvider: versionedData, completion: completion)
     }
     
-    open func getChampions(completion: @escaping (Response<ChampionDto>) -> Void) {
+    open func getChampions(completion: @escaping (Response<DataAsset<Champion>>) -> Void) {
         getData(.champions, typeProvider: versionedData, completion: completion)
     }
     

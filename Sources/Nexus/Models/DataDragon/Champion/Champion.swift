@@ -36,15 +36,19 @@ public struct Champion: Codable {
     /// The champion's title string.
     public let title: String
 
+    public let tags: [String] // mage, fighter, etc
+    
+    public let resourceType: String
+    
     public let blurb: String // lore reduced
 
     public let lore: String?
 
-    public let tags: [String] // mage, fighter, etc
+    public let allyTips: [String]?
 
-    public let allytips: [String]?
-
-    public let enemytips: [String]?
+    public let enemyTips: [String]?
+    
+    public let image: ImageMetadata
     
     public let info: ChampionInfo
     
@@ -57,9 +61,12 @@ public struct Champion: Codable {
     public let passive: ChampionPassive?
 }
 
-public struct ChampionDto: Codable {
-    public let data: [String : Champion]
-    public let version: String
-    public let type: String
-    internal let format: String
+extension Champion {
+    
+    enum CodingKeys: String, CodingKey {
+        case id, key, name, title, tags, blurb, lore, image, info, stats, skins, spells, passive
+        case allyTips       = "allytips"
+        case enemyTips      = "enemytips"
+        case resourceType   = "partype"
+    }
 }
