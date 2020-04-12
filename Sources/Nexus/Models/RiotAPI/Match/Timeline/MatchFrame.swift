@@ -23,7 +23,7 @@
 //
 
 public struct MatchFrame: Codable {
-    let timestamp: Int
-    let participantFrames: [String : MatchParticipantFrame]
-    let events: [MatchEvent]
+    public let timestamp: Int
+    public let participantFrames: [String : MatchParticipantFrame]
+    public let events: [MatchEvent]
 }

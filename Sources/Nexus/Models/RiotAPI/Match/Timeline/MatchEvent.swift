@@ -25,29 +25,29 @@
 public struct MatchEvent: Codable {
     
     /// The type of the event. Legal values: CHAMPION_KILL, WARD_PLACED, WARD_KILL, BUILDING_KILL, ELITE_MONSTER_KILL, ITEM_PURCHASED, ITEM_SOLD, ITEM_DESTROYED, ITEM_UNDO, SKILL_LEVEL_UP, ASCENDED_EVENT, CAPTURE_POINT, PORO_KING_SUMMON
-    let type: String
-    let timestamp: Int
-    let teamID: Int?
-    let participantID: Int?
-    let assistingParticipantIDs: [Int]?
-    let position: MatchPosition?
-    let beforeID: Int?
-    let afterID: Int?
-    let creatorID: Int?
-    let eventType: String?
-    let laneType: String?
-    let killerID: Int?
-    let victimID: Int?
-    let wardType: String?
-    let buildingType: String?
-    let towerType: String?
-    let monsterType: String?
-    let monsterSubType: String?
-    let itemID: Int?
-    let skillSlot: Int?
-    let levelUpType: String?
-    let ascendedType: String?
-    let pointCaptured: String?
+    public let type: String
+    public let timestamp: Int
+    public let teamID: Int?
+    public let participantID: Int?
+    public let assistingParticipantIDs: [Int]?
+    public let position: MatchPosition?
+    public let beforeID: Int?
+    public let afterID: Int?
+    public let creatorID: Int?
+    public let eventType: String?
+    public let laneType: String?
+    public let killerID: Int?
+    public let victimID: Int?
+    public let wardType: String?
+    public let buildingType: String?
+    public let towerType: String?
+    public let monsterType: String?
+    public let monsterSubType: String?
+    public let itemID: Int?
+    public let skillSlot: Int?
+    public let levelUpType: String?
+    public let ascendedType: String?
+    public let pointCaptured: String?
 }
 
 internal extension MatchEvent {

@@ -23,12 +23,12 @@
 //
 
 public struct ChampionRotationInfo: Codable, Equatable {
-    let freeChampionIDs: [Int]
-    let freeChampionIdsForNewPlayers: [Int]
-    let maxNewPlayerLevel: Int
+    public let freeChampionIDs: [Int]
+    public let freeChampionIdsForNewPlayers: [Int]
+    public let maxNewPlayerLevel: Int
 }
 
-extension ChampionRotationInfo {
+internal extension ChampionRotationInfo {
     
     enum CodingKeys: String, CodingKey {
         case maxNewPlayerLevel

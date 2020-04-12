@@ -23,8 +23,8 @@
 //
 
 public struct MatchList: Codable {
-    let matches: [MatchReference]
-    let totalGames: Int
-    let startIndex: Int
-    let endIndex: Int
+    public let matches: [MatchReference]
+    public let totalGames: Int
+    public let startIndex: Int
+    public let endIndex: Int
 }

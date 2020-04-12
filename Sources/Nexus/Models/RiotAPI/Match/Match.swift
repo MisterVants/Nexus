@@ -25,41 +25,41 @@
 public struct Match: Codable {
     
     /// The ID value of the match.
-    let gameId: Int
+    public let gameId: Int
     
     /// The ID value of the season. Please refer to the Game Constants documentation.
-    let seasonId: Int
+    public let seasonId: Int
     
     /// The ID value of the queue. Please refer to the Game Constants documentation.
-    let queueId: Int
+    public let queueId: Int
     
     /// The major.minor version typically indicates the patch the match was played on.
-    let gameVersion: String
+    public let gameVersion: String
     
     /// The ID value for the platform in which the match was played.
-    let platformId: String
+    public let platformId: String
     
     /// The game mode that was played. Please refer to the Game Constants documentation.
-    let gameMode: String
+    public let gameMode: String
     
     /// The ID value of the map. Please refer to the Game Constants documentation.
-    let mapId: Int
+    public let mapId: Int
     
     /// The type of the game that was played. Please refer to the Game Constants documentation.
-    let gameType: String
+    public let gameType: String
     
     /// Match duration in seconds.
-    let gameDuration: Int
+    public let gameDuration: Int
     
     /// Designates the timestamp when champion select ended and the loading screen appeared, NOT when the game timer was at 0:00.
-    let gameCreation: Int
+    public let gameCreation: Int
     
     /// Participant identity information.
-    let participantIdentities: [MatchParticipantIdentity]
+    public let participantIdentities: [MatchParticipantIdentity]
     
     /// Team information.
-    let teams: [TeamStats]
+    public let teams: [TeamStats]
     
     /// Participant information.
-    let participants: [MatchParticipant]
+    public let participants: [MatchParticipant]
 }

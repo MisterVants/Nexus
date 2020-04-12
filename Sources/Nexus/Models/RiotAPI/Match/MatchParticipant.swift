@@ -25,34 +25,34 @@
 public struct MatchParticipant: Codable {
     
     /// The ID value of this participant.
-    let participantID: Int
+    public let participantID: Int
     
     /// The team ID: 100 for blue side, 200 for red side.
-    let teamID: Int
+    public let teamID: Int
     
     /// The ID value of the champion played during the match.
-    let championID: Int
+    public let championID: Int
     
     /// The first Summoner Spell ID.
-    let summonerSpellOneID: Int
+    public let summonerSpellOneID: Int
     
     /// The second Summoner Spell ID.
-    let summonerSpellTwoID: Int
+    public let summonerSpellTwoID: Int
     
     /// Highest ranked tier achieved for the previous season in a specific subset of queue IDs, if any, otherwise nil. Used to display border in game loading screen. Please refer to the Ranked Info documentation. (Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE, UNRANKED)
-    let highestAchievedSeasonTier: String?
+    public let highestAchievedSeasonTier: String?
     
     /// Match statistics for the participant.
-    let stats: MatchParticipantStats
+    public let stats: MatchParticipantStats
     
     /// Match timeline data for the participant.
-    let timeline: MatchParticipantTimeline
+    public let timeline: MatchParticipantTimeline
     
     /// List of legacy Rune information. Not included for matches played with Runes Reforged.
-    let runes: [MatchLegacyRune]?
+    public let runes: [MatchLegacyRune]?
     
     /// List of legacy Mastery information. Not included for matches played with Runes Reforged.
-    let masteries: [MatchLegacyMastery]?
+    public let masteries: [MatchLegacyMastery]?
 }
 
 internal extension MatchParticipant {

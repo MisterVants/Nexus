@@ -25,13 +25,13 @@
 public struct Perks: Codable {
     
     /// Primary runes path ID.
-    let perkStyle: Int
+    public let perkStyle: Int
     
     /// Secondary runes path ID.
-    let perkSubstyle: Int
+    public let perkSubstyle: Int
     
     /// IDs of the perks/runes assigned.
-    let perkIDs: [Int]
+    public let perkIDs: [Int]
 }
 
 extension Perks {

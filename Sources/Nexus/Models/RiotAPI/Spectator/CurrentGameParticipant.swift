@@ -25,34 +25,34 @@
 public struct CurrentGameParticipant: Codable {
     
     /// The encrypted summoner ID of this participant.
-    let summonerID: String
+    public let summonerID: String
     
     /// The summoner name of this participant.
-    let summonerName: String
+    public let summonerName: String
     
     /// The ID of the profile icon used by this participant.
-    let profileIconID: Int
+    public let profileIconID: Int
     
     /// A boolean value indicating whether or not this participant is a bot.
-    let isBot: Bool
+    public let isBot: Bool
     
     /// The team ID of this participant, indicating the participant's team.
-    let teamID: Int
+    public let teamID: Int
     
     /// The ID of the champion played by this participant.
-    let championID: Int
+    public let championID: Int
     
     /// The ID of the first summoner spell used by this participant.
-    let summonerSpellOneID: Int
+    public let summonerSpellOneID: Int
     
     /// The ID of the second summoner spell used by this participant.
-    let summonerSpellTwoID: Int
+    public let summonerSpellTwoID: Int
     
     /// Perks / Runes Reforged Information.
-    let runesReforged: Perks
+    public let runesReforged: Perks
     
     /// List of Game Customizations.
-    let gameCustomizationObjects: [GameCustomizationObject]
+    public let gameCustomizationObjects: [GameCustomizationObject]
 }
 
 internal extension CurrentGameParticipant {

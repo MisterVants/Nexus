@@ -25,8 +25,8 @@
 public struct FeaturedGames: Codable {
     
     /// The suggested interval to wait before requesting FeaturedGames again.
-    let clientRefreshInterval: Int
+    public let clientRefreshInterval: Int
     
     /// The list of featured games.
-    let gameList: [FeaturedGameInfo]
+    public let gameList: [FeaturedGameInfo]
 }

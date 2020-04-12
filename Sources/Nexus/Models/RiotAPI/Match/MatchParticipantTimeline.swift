@@ -25,34 +25,34 @@
 public struct MatchParticipantTimeline: Codable {
     
     /// The ID value of this participant.
-    let participantID: Int
+    public let participantID: Int
     
     /// Participant's calculated lane. MID and BOT are legacy values. (Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM)
-    let lane: String?
+    public let lane: String?
     
     /// Participant's calculated role. (Legal values: DUO, NONE, SOLO, DUO_CARRY, DUO_SUPPORT)
-    let role: String?
+    public let role: String?
     
     /// Gold value for a specified period.
-    let goldPerMinuteDeltas: [String : Double]?
+    public let goldPerMinuteDeltas: [String : Double]?
     
     /// Experience change for a specified period.
-    let experiencePerMinuteDeltas: [String : Double]?
+    public let experiencePerMinuteDeltas: [String : Double]?
     
     /// Experience difference versus the calculated lane opponent(s) for a specified period.
-    let experienceDiffPerMinuteDeltas: [String : Double]?
+    public let experienceDiffPerMinuteDeltas: [String : Double]?
     
     /// Creeps score for a specified period.
-    let creepsPerMinuteDeltas: [String : Double]?
+    public let creepsPerMinuteDeltas: [String : Double]?
     
     /// Creep score difference versus the calculated lane opponent(s) for a specified period.
-    let creepScoreDiffPerMinuteDeltas: [String : Double]?
+    public let creepScoreDiffPerMinuteDeltas: [String : Double]?
     
     /// Damage taken for a specified period.
-    let damageTakenPerMinuteDeltas: [String : Double]?
+    public let damageTakenPerMinuteDeltas: [String : Double]?
     
     /// Damage taken difference versus the calculated lane opponent(s) for a specified period.
-    let damageTakenDiffPerMinuteDeltas: [String : Double]?
+    public let damageTakenDiffPerMinuteDeltas: [String : Double]?
 }
 
 internal extension MatchParticipantTimeline {

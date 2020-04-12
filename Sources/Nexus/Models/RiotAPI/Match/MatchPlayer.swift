@@ -25,31 +25,31 @@
 public struct MatchPlayer: Codable {
     
     /// The summoner's name.
-    let summonerName: String
+    public let summonerName: String
     
     /// The URI poiting to the player's match history.
-    let matchHistoryURI: String
+    public let matchHistoryURI: String
     
     /// The ID of the summoner icon associated with the player.
-    let profileIcon: Int
+    public let profileIcon: Int
     
     /// The player's original platform ID.
-    let platformID: String
+    public let platformID: String
     
     /// The player's current platform ID.
-    let currentPlatformID: String
+    public let currentPlatformID: String
     
     /// The player's original account ID (Encrypted)
-    let accountID: String
+    public let accountID: String
     
     /// The player's current accountId (Encrypted)
-    let currentAccountID: String
+    public let currentAccountID: String
     
     /// The player's encrypted summoner ID.
-    let summonerID: String
+    public let summonerID: String
 }
 
-extension MatchPlayer {
+internal extension MatchPlayer {
     
     enum CodingKeys: String, CodingKey {
         case summonerName, profileIcon

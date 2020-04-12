@@ -25,35 +25,35 @@
 public struct CurrentGameInfo: Codable {
     
     /// The ID value of the game.
-    let gameId: Int
+    public let gameId: Int
     
     /// The ID value of the platform on which the game is being played.
-    let platformId: String
+    public let platformId: String
     
     /// The queue type (queue types are documented on the Game Constants page).
-    let gameQueueConfigId: Int
+    public let gameQueueConfigId: Int
     
     /// The ID value of the map.
-    let mapId: Int
+    public let mapId: Int
     
     /// The game mode being played.
-    let gameMode: String
+    public let gameMode: String
     
     /// The game type being played.
-    let gameType: String
+    public let gameType: String
     
     /// The game start time represented in epoch milliseconds.
-    let gameStartTime: Int
+    public let gameStartTime: Int
     
     /// The amount of time in seconds that has passed since the game started.
-    let gameLength: Int
+    public let gameLength: Int
     
     /// The observer information.
-    let observers: Observer
+    public let observers: Observer
     
     /// Banned champions information.
-    let bannedChampions: [BannedChampion]
+    public let bannedChampions: [BannedChampion]
     
     /// The game participant information.
-    let participants: [CurrentGameParticipant]
+    public let participants: [CurrentGameParticipant]
 }

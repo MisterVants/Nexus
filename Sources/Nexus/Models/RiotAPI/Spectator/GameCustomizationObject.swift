@@ -25,8 +25,8 @@
 public struct GameCustomizationObject: Codable {
     
     /// Category identifier for Game Customization.
-    let category: String
+    public let category: String
     
     /// Game Customization content.
-    let content: String
+    public let content: String
 }

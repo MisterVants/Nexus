@@ -23,16 +23,16 @@
 //
 
 public struct MatchParticipantFrame: Codable {
-    let participantID: Int
-    let level: Int?
-    let experiencePoints: Int?
-    let totalGold: Int?
-    let currentGold: Int?
-    let minionsKilled: Int?
-    let jungleMinionsKilled: Int?
-    let position: MatchPosition?
-    let teamScore: Int?
-    let dominionScore: Int?
+    public let participantID: Int
+    public let level: Int?
+    public let experiencePoints: Int?
+    public let totalGold: Int?
+    public let currentGold: Int?
+    public let minionsKilled: Int?
+    public let jungleMinionsKilled: Int?
+    public let position: MatchPosition?
+    public let teamScore: Int?
+    public let dominionScore: Int?
 }
 
 internal extension MatchParticipantFrame {

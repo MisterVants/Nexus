@@ -25,52 +25,52 @@
 public struct TeamStats: Codable {
     
     /// The team ID: 100 for blue side, 200 for red side.
-    let teamID: Int
+    public let teamID: Int
     
     /// If match queueID has a draft, contains banned champion data, otherwise empty.
-    let bans: [TeamBan]
+    public let bans: [TeamBan]
     
     /// A string indicating whether or not the team won. There are only two values visibile in public match history. (Legal values: Fail, Win)
-    let winStatus: String
+    public let winStatus: String
     
     /// A boolean value indicating whether or not the team scored the first blood.
-    let hasScoredFirstBlood: Bool?
+    public let hasScoredFirstBlood: Bool?
     
     /// A boolean value indicating whether or not the team scored the first Dragon kill.
-    let hasKilledFirstDragon: Bool?
+    public let hasKilledFirstDragon: Bool?
     
     /// A boolean value indicating whether or not the team scored the first Rift Herald kill.
-    let hasKilledFirstRiftHerald: Bool?
+    public let hasKilledFirstRiftHerald: Bool?
     
     /// A boolean value indicating whether or not the team scored the first Baron kill.
-    let hasKilledFirstBaron: Bool?
+    public let hasKilledFirstBaron: Bool?
     
     /// A boolean value indicating whether or not the team destroyed the first tower.
-    let hasDestroyedFirstTower: Bool?
+    public let hasDestroyedFirstTower: Bool?
     
     /// A boolean value indicating whether or not the team destroyed the first inhibitor.
-    let hasDestroyedFirstInhibitor: Bool?
+    public let hasDestroyedFirstInhibitor: Bool?
     
     /// Number of times the team killed the Dragon.
-    let dragonKills: Int?
+    public let dragonKills: Int?
     
     /// Number of times the team killed the Rift Herald.
-    let riftHeraldKills: Int?
+    public let riftHeraldKills: Int?
     
     /// Number of times the team killed the Baron.
-    let baronKills: Int?
+    public let baronKills: Int?
     
     /// Number of towers the team destroyed.
-    let towerKills: Int?
+    public let towerKills: Int?
     
     /// Number of inhibitors the team destroyed.
-    let inhibitorKills: Int?
+    public let inhibitorKills: Int?
     
     /// Number of times the team killed Vilemaw. (Twisted Treeline matches)
-    let vilemawKills: Int?
+    public let vilemawKills: Int?
     
     /// For Dominion matches, specifies the points the team had at game end.
-    let dominionVictoryScore: Int?
+    public let dominionVictoryScore: Int?
 }
 
 internal extension TeamStats {

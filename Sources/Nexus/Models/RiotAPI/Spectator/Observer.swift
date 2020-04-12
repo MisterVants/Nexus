@@ -24,5 +24,5 @@
 
 public struct Observer: Codable {
     /// Key used to decrypt the spectator grid game data for playback
-    let encryptionKey: String
+    public let encryptionKey: String
 }

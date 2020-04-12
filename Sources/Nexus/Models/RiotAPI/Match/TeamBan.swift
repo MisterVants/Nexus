@@ -25,13 +25,13 @@
 public struct TeamBan: Codable {
     
     /// Turn during which the champion was banned.
-    let pickTurn: Int
+    public let pickTurn: Int
     
     /// Tht ID value of the banned champion.
-    let championID: Int
+    public let championID: Int
 }
 
-extension TeamBan {
+internal extension TeamBan {
 
     enum CodingKeys: String, CodingKey {
         case pickTurn

@@ -1,38 +1,55 @@
 //
-//  File.swift
-//  
+//  ChampionMastery.swift
 //
-//  Created by André Vants Soares de Almeida on 29/02/20.
+//  Copyright (c) 2020 André Vants
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
 //
 
 public struct ChampionMastery: Codable {
     
     /// The Champion ID of this mastery's champion.
-    let championId: Int
+    public let championId: Int
     
     /// The encrypted summoner ID of this mastery's owner.
-    let summonerId: String
+    public let summonerId: String
     
     /// Champion level for specified player and champion combination.
-    let championLevel: Int
+    public let championLevel: Int
     
     /// Total number of champion points for this player and champion combination - they are used to determine championLevel.
-    let championPoints: Int
+    public let championPoints: Int
     
     /// Number of points earned since current level has been achieved.
-    let championPointsSinceLastLevel: Int
+    public let championPointsSinceLastLevel: Int
     
     /// The number of points needed to achieve next level. Zero if player reached maximum champion level for this champion.
-    let championPointsUntilNextLevel: Int
+    public let championPointsUntilNextLevel: Int
     
     /// The token earned for this champion to levelup.
-    let tokensEarned: Int
+    public let tokensEarned: Int
     
     /// A boolean value indicating if a chest was granted for this champion in current season.
-    let isChestGranted: Bool
+    public let isChestGranted: Bool
     
     /// Last time this champion was played by this player - in Unix milliseconds time format.
-    let lastPlayTime: Int
+    public let lastPlayTime: Int
 }
 
 internal extension ChampionMastery {

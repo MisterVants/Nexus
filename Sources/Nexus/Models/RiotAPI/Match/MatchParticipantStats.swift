@@ -24,162 +24,162 @@
 
 public struct MatchParticipantStats: Codable {
     
-    let participantId: Int
+    public let participantId: Int
     
-    let win: Bool?
-    let champLevel: Int?
-    let totalScoreRank: Int?
-    let totalPlayerScore: Int?
-    let combatPlayerScore: Int?
+    public let win: Bool?
+    public let champLevel: Int?
+    public let totalScoreRank: Int?
+    public let totalPlayerScore: Int?
+    public let combatPlayerScore: Int?
     
     // MARK: - Combat
     
-    let kills: Int?
-    let deaths: Int?
-    let assists: Int?
+    public let kills: Int?
+    public let deaths: Int?
+    public let assists: Int?
     
-    let largestKillingSpree: Int?
-    let largestMultiKill: Int?
-    let totalTimeCrowdControlDealt: Int?
-    let timeCCingOthers: Int?
-    let firstBloodKill: Bool?
-    let firstBloodAssist: Bool?
-    let longestTimeSpentLiving: Int?
+    public let largestKillingSpree: Int?
+    public let largestMultiKill: Int?
+    public let totalTimeCrowdControlDealt: Int?
+    public let timeCCingOthers: Int?
+    public let firstBloodKill: Bool?
+    public let firstBloodAssist: Bool?
+    public let longestTimeSpentLiving: Int?
     
-    let killingSprees: Int?
-    let doubleKills: Int?
-    let tripleKills: Int?
-    let quadraKills: Int?
-    let pentaKills: Int?
-    let unrealKills: Int?
+    public let killingSprees: Int?
+    public let doubleKills: Int?
+    public let tripleKills: Int?
+    public let quadraKills: Int?
+    public let pentaKills: Int?
+    public let unrealKills: Int?
     
     // MARK: - Objectives
     
-    let teamObjective: Int?
-    let objectivePlayerScore: Int?
-    let firstTowerKill: Bool?
-    let firstTowerAssist: Bool?
-    let firstInhibitorKill: Bool?
-    let firstInhibitorAssist: Bool?
+    public let teamObjective: Int?
+    public let objectivePlayerScore: Int?
+    public let firstTowerKill: Bool?
+    public let firstTowerAssist: Bool?
+    public let firstInhibitorKill: Bool?
+    public let firstInhibitorAssist: Bool?
     
     // MARK: - Damage Dealt
     
-    let totalDamageDealtToChampions: Int?
-    let physicalDamageDealtToChampions: Int?
-    let magicDamageDealtToChampions: Int?
-    let trueDamageDealtToChampions: Int?
-    let totalDamageDealt: Int?
-    let physicalDamageDealt: Int?
-    let magicDamageDealt: Int?
-    let trueDamageDealt: Int?
-    let largestCriticalStrike: Int?
-    let damageDealtToTurrets: Int?
-    let damageDealtToObjectives: Int?
+    public let totalDamageDealtToChampions: Int?
+    public let physicalDamageDealtToChampions: Int?
+    public let magicDamageDealtToChampions: Int?
+    public let trueDamageDealtToChampions: Int?
+    public let totalDamageDealt: Int?
+    public let physicalDamageDealt: Int?
+    public let magicDamageDealt: Int?
+    public let trueDamageDealt: Int?
+    public let largestCriticalStrike: Int?
+    public let damageDealtToTurrets: Int?
+    public let damageDealtToObjectives: Int?
     
     // MARK: - Damage Taken and Healed
     
-    let totalHeal: Int?
-    let totalDamageTaken: Int?
-    let physicalDamageTaken: Int?
-    let magicalDamageTaken: Int?
-    let trueDamageTaken: Int?
-    let damageSelfMitigated: Int?
-    let totalUnitsHealed: Int?
+    public let totalHeal: Int?
+    public let totalDamageTaken: Int?
+    public let physicalDamageTaken: Int?
+    public let magicalDamageTaken: Int?
+    public let trueDamageTaken: Int?
+    public let damageSelfMitigated: Int?
+    public let totalUnitsHealed: Int?
     
     // MARK: - Vision
     
-    let visionScore: Int?
-    let wardsPlaced: Int?
-    let wardsKilled: Int?
-    let sightWardsBoughtInGame: Int?
-    let visionWardsBoughtInGame: Int?
+    public let visionScore: Int?
+    public let wardsPlaced: Int?
+    public let wardsKilled: Int?
+    public let sightWardsBoughtInGame: Int?
+    public let visionWardsBoughtInGame: Int?
     
     // MARK: - Receipt
     
-    let goldEarned: Int?
-    let goldSpent: Int?
-    let totalMinionsKilled: Int?
-    let neutralMinionsKilled: Int?
-    let neutralMinionsKilledTeamJungle: Int?
-    let neutralMinionsKilledEnemyJungle: Int?
+    public let goldEarned: Int?
+    public let goldSpent: Int?
+    public let totalMinionsKilled: Int?
+    public let neutralMinionsKilled: Int?
+    public let neutralMinionsKilledTeamJungle: Int?
+    public let neutralMinionsKilledEnemyJungle: Int?
     
     // MARK: - Others
     
-    let turretKills: Int?
-    let inhibitorKills: Int?
+    public let turretKills: Int?
+    public let inhibitorKills: Int?
     
-    let altarsCaptured: Int?
-    let altarsNeutralized: Int?
+    public let altarsCaptured: Int?
+    public let altarsNeutralized: Int?
     
-    let nodeCapture: Int?
-    let nodeCaptureAssist: Int?
-    let nodeNeutralize: Int?
-    let nodeNeutralizeAssist: Int?
+    public let nodeCapture: Int?
+    public let nodeCaptureAssist: Int?
+    public let nodeNeutralize: Int?
+    public let nodeNeutralizeAssist: Int?
     
     // MARK: - Runes Reforged
     
     /// Primary rune path
-    let perkPrimaryStyle: Int?
+    public let perkPrimaryStyle: Int?
     /// Secondary rune path
-    let perkSubStyle: Int?
+    public let perkSubStyle: Int?
     
     /// Primary path keystone rune.
-    let perk0: Int?
+    public let perk0: Int?
     /// Primary path rune.
-    let perk1: Int?
+    public let perk1: Int?
     /// Primary path rune.
-    let perk2: Int?
+    public let perk2: Int?
     /// Primary path rune.
-    let perk3: Int?
+    public let perk3: Int?
     
     /// Secondary path rune.
-    let perk4: Int?
+    public let perk4: Int?
     /// Secondary path rune.
-    let perk5: Int?
+    public let perk5: Int?
     
     // Post game rune stats.
-    let perk0Var1: Int?
-    let perk0Var2: Int?
-    let perk0Var3: Int?
+    public let perk0Var1: Int?
+    public let perk0Var2: Int?
+    public let perk0Var3: Int?
     
-    let perk1Var1: Int?
-    let perk1Var3: Int?
-    let perk1Var2: Int?
+    public let perk1Var1: Int?
+    public let perk1Var3: Int?
+    public let perk1Var2: Int?
     
-    let perk2Var1: Int?
-    let perk2Var2: Int?
-    let perk2Var3: Int?
+    public let perk2Var1: Int?
+    public let perk2Var2: Int?
+    public let perk2Var3: Int?
     
-    let perk3Var1: Int?
-    let perk3Var2: Int?
-    let perk3Var3: Int?
+    public let perk3Var1: Int?
+    public let perk3Var2: Int?
+    public let perk3Var3: Int?
     
-    let perk4Var1: Int?
-    let perk4Var2: Int?
-    let perk4Var3: Int?
+    public let perk4Var1: Int?
+    public let perk4Var2: Int?
+    public let perk4Var3: Int?
     
-    let perk5Var1: Int?
-    let perk5Var2: Int?
-    let perk5Var3: Int?
+    public let perk5Var1: Int?
+    public let perk5Var2: Int?
+    public let perk5Var3: Int?
     
     // Item IDs
-    let item0: Int?
-    let item1: Int?
-    let item2: Int?
-    let item3: Int?
-    let item4: Int?
-    let item5: Int?
-    let item6: Int?
+    public let item0: Int?
+    public let item1: Int?
+    public let item2: Int?
+    public let item3: Int?
+    public let item4: Int?
+    public let item5: Int?
+    public let item6: Int?
     
-    let playerScore0: Int?
-    let playerScore1: Int?
-    let playerScore2: Int?
-    let playerScore3: Int?
-    let playerScore4: Int?
-    let playerScore5: Int?
-    let playerScore6: Int?
-    let playerScore7: Int?
-    let playerScore8: Int?
-    let playerScore9: Int?
+    public let playerScore0: Int?
+    public let playerScore1: Int?
+    public let playerScore2: Int?
+    public let playerScore3: Int?
+    public let playerScore4: Int?
+    public let playerScore5: Int?
+    public let playerScore6: Int?
+    public let playerScore7: Int?
+    public let playerScore8: Int?
+    public let playerScore9: Int?
 }
 

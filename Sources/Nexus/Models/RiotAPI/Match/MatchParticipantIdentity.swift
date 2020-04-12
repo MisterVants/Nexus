@@ -25,13 +25,13 @@
 public struct MatchParticipantIdentity: Codable {
     
     /// The ID value of this participant.
-    let participantID: Int
+    public let participantID: Int
     
     /// Player information about this participant.
-    let player: MatchPlayer
+    public let player: MatchPlayer
 }
 
-extension MatchParticipantIdentity {
+internal extension MatchParticipantIdentity {
 
     enum CodingKeys: String, CodingKey {
         case player

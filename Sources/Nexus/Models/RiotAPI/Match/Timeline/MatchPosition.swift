@@ -23,6 +23,6 @@
 //
 
 public struct MatchPosition: Codable {
-    let x: Int
-    let y: Int
+    public let x: Int
+    public let y: Int
 }

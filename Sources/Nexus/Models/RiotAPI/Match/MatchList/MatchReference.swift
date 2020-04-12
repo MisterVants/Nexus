@@ -25,26 +25,26 @@
 public struct MatchReference: Codable {
     
     /// The ID value of the match. Can be used as parameter for /matches/{matchId} endpoint method.
-    let gameID: Int
+    public let gameID: Int
     
     /// The ID value for the platform in which the match was played.
-    let platformID: String
+    public let platformID: String
     
     /// The ID value of the season. Please refer to the Game Constants documentation.
-    let seasonID: Int
+    public let seasonID: Int
     
     /// The ID value of the queue. Please refer to the Game Constants documentation.
-    let queueId: Int
+    public let queueId: Int
     
     /// The ID value of the champion played during the match.
-    let championID: Int
+    public let championID: Int
     
-    let lane: String?
-    let role: String?
-    let timestamp: Int
+    public let lane: String?
+    public let role: String?
+    public let timestamp: Int
 }
 
-extension MatchReference {
+internal extension MatchReference {
     
     enum CodingKeys: String, CodingKey {
         case lane, role, timestamp

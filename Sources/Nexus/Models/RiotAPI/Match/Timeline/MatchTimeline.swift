@@ -23,6 +23,6 @@
 //
 
 public struct MatchTimeline: Codable {
-    let frameInterval: Int
-    let frames: [MatchFrame]
+    public let frameInterval: Int
+    public let frames: [MatchFrame]
 }

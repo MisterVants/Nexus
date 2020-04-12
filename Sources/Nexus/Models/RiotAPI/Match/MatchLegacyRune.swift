@@ -23,8 +23,8 @@
 //
 
 public struct MatchLegacyRune: Codable {
-    let runeID: Int
-    let rank: Int
+    public let runeID: Int
+    public let rank: Int
 }
 
 internal extension MatchLegacyRune {
